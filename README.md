@@ -97,7 +97,7 @@ https://player.captivate.fm/episode/75724001-14e8-48ef-8fc4-c2b1a6b04001
 
 We want the software project to be self-sustainable. The best way to do that is to [charge for it somehow](https://meta.discourse.org/t/which-is-better-discourse-or-flarum/71726/7?u=erlend_sh).
 
-We are trying out a new kind of open license because traditional open source lcenses do not create a strong incentive for an exceptionally good self-hosted experience.
+We are trying out a new kind of open license because traditional open source licenses do not create a strong incentive for an exceptionally good self-hosted experience.
 
 Self-hosting a WordPress site today isn’t any easier than it was 15 years ago. It should be like installing just another app on your computer, but it isn’t.
 
