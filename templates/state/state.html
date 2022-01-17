@@ -6,6 +6,10 @@
     let federationDomain = {{.FederationDomain}}
     let authenticated = false;
     let identity;
+    let newUser = false;
+    {{if .NewUser}}
+        newUser = true;
+    {{end}}
     {{if .LoggedInUser}}
         authenticated = true
         identity = {{.LoggedInUser}}

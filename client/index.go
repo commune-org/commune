@@ -78,6 +78,7 @@ func (c *Client) IndexUser(w http.ResponseWriter, r *http.Request) {
 		InitialPosts     interface{}
 		Depth            int
 		TenorKey         string
+		NewUser          bool
 	}
 
 	nonce := secure.CSPNonce(r.Context())
@@ -86,6 +87,18 @@ func (c *Client) IndexUser(w http.ResponseWriter, r *http.Request) {
 		Room: Room{
 			Path: "user-index",
 		},
+	}
+
+	s, err := GetSession(r, c)
+	if err != nil {
+		log.Println(err)
+	}
+	if s != nil {
+		x := s.Flashes("signed-up")
+		if len(x) > 0 {
+			t.NewUser = true
+		}
+		s.Save(r, w)
 	}
 
 	if user != nil {

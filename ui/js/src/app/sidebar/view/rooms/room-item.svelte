@@ -135,44 +135,6 @@ $: icon = chatroom ? hash : topics
     </div>
 </div>
     {#if hasChildren}
-        <div class="flex room-item-threads mb2">
-
-            <div class="flex-one flex-column flex">
-                {#each children as thread, i (thread.room_id)}
-                    <div class="room-item-thread flex">
-                        <div class="relative o-60">
-                            {#if !last(i)}
-                                <div class="spine"></div>
-                            {:else}
-                                {#if single}
-                                    <div class="spine-single"></div>
-                                {:else}
-                                    <div class="spine-last"></div>
-                                {/if}
-                            {/if}
-                        </div>
-                        <div class="flex-one flex" 
-                            class:thread-name-ac={threadIndicate(thread)}
-                            class:thread-name={!threadIndicate(thread)}
-                            on:click={goToThread(thread)}
-                            on:contextmenu|self={() => tinfo(thread)}>
-
-                            <div class="flex-one">
-                                {thread.name}
-                            </div>
-                            {#if thread.owner}
-                            <div class="icon"
-                                on:click={deleteRoom(thread.room_id)}>
-                                {@html close}
-                            </div>
-                            {/if}
-                        </div>
-                    </div>
-                {/each}
-            </div>
-
-
-        </div>
     {/if}
 
 <style>
