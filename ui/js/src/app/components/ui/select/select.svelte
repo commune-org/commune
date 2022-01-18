@@ -8,26 +8,25 @@ export let multiple;
 export let items;
 
 function select(item) { 
-    dispatch("selected", item.detail)
+    let state = _items[item.detail]?.selected
+    _items[item.detail].selected = !state
+    if(!multiple) {
+        _items.forEach((x, i) => {
+            if(i != item.detail) {
+                delete x.selected
+            }
+        })
+    }
+    dispatch("selected", _items)
 }
 
 let _items = items;
 onMount(() => {
     let isSelected  = _items?.filter(x => x.selected)?.length > 0
     // if no items are selected by default, select the first item
-    if(!isSelected) {
+    if(!isSelected && !multiple) {
         _items[0].selected = true
     }
-    console.log(isSelected)
-    console.log(isSelected)
-    console.log(isSelected)
-    console.log(isSelected)
-    console.log(isSelected)
-    console.log(isSelected)
-    console.log(isSelected)
-    console.log(isSelected)
-    console.log(isSelected)
-    console.log(isSelected)
 })
 
 </script>
@@ -37,10 +36,11 @@ onMount(() => {
 
     <div class="select-container fl-co">
 
-        {#each _items as item}
+        {#each _items as item, i}
 
             <Item 
             item={item} 
+            index={i}
             multiple={multiple}
             on:selected={select}/>
 

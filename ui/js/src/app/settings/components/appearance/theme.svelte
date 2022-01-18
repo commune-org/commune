@@ -3,32 +3,41 @@ import Select from '../../../components/ui/select/select.svelte'
 import {onMount} from 'svelte'
 
 let ready = false;
+let modes;
 
 onMount(() => {
+    let theme = localStorage.getItem("theme");
+    let isLight = theme && theme == "light"
+    let isSync = theme && theme == "sync"
+
+    modes = [
+        {
+            name: "dark",
+            caption: "Dark",
+            selected: !isLight,
+        },
+        {
+            name: "light",
+            caption: "Light",
+            selected: isLight,
+        },
+        {
+            name: "sync",
+            caption: "Sync with computer",
+            selected: isSync,
+        },
+    ]
+
+
+
     ready = true
 })
 
-let lightMode = localStorage.getItem("light-mode");
-let isLight = lightMode && lightMode == "true"
-
-let modes = [
-    {
-        name: "dark",
-        caption: "Dark",
-    },
-    {
-        name: "light",
-        caption: "Light",
-        selected: true
-    },
-    {
-        name: "sync",
-        caption: "Sync with computer"
-    },
-]
 
 function selected(e) {
-console.log(e.detail)
+    modes = e.detail
+
+    console.log(modes)
 }
 
 </script>
@@ -38,7 +47,6 @@ console.log(e.detail)
         <Select 
             items={modes} 
             on:selected={selected}
-            multiple={true}
         />
     {/if}
 </div>

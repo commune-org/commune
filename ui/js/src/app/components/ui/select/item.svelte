@@ -3,15 +3,12 @@ import {createEventDispatcher} from 'svelte'
 
 const dispatch = createEventDispatcher();
 
-function select(name) { 
-    selected = !selected
-    dispatch("selected", {
-        name: name,
-        selected: selected,
-    })
+function select() { 
+    dispatch("selected", index)
 }
 
 export let item;
+export let index;
 export let multiple;
 
 $: selected = item.selected;
@@ -19,12 +16,12 @@ $: selected = item.selected;
 </script>
 
 <div class="s-co flex"
-    on:click={() => select(item.name)}
-    class:selected={selected}>
+    on:click={() => select()}
+    class:selected={item.selected}>
     <div class="gr-center">
         <div class="rad gr-default" 
         class:rad-m={multiple}>
-            {#if selected}
+            {#if item.selected}
                 <div class="radi gr-center"
                 class:radi-m={multiple}>
                 </div>
