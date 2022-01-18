@@ -15,6 +15,13 @@
     if(theme && theme == "light") {
         document.documentElement.classList.add('light')
     }
+    if(theme && theme == "sync") {
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.remove('light')
+        } else { 
+            document.documentElement.classList.add('light')
+        }
+    }
 </script>
     <div class="root app">
 

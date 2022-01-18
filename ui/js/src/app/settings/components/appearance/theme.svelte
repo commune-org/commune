@@ -14,7 +14,7 @@ onMount(() => {
         {
             name: "dark",
             caption: "Dark",
-            selected: !isLight,
+            selected: !isLight && !isSync,
         },
         {
             name: "light",
@@ -37,16 +37,53 @@ onMount(() => {
 function selected(e) {
     modes = e.detail
 
-    console.log(modes)
+    let selected = modes.filter(x => x.selected)[0]
+    console.log(selected)
+    switch (selected.name) {
+        case "light":
+            localStorage.setItem("theme", "light")
+            document.documentElement.classList.add('light')
+        break;
+        case "dark":
+            localStorage.removeItem("theme")
+            document.documentElement.classList.remove('light')
+        break;
+        case "sync":
+            localStorage.setItem("theme", "sync")
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.classList.remove('light')
+            } else { 
+                document.documentElement.classList.add('light')
+            }
+    }
 }
 
 </script>
 
-<div class="">  
-    {#if ready}
-        <Select 
-            items={modes} 
-            on:selected={selected}
-        />
-    {/if}
+
+
+<div class="fl-co">  
+    <div class="n-t">
+    theme
+    </div>
+
+    <div class="">
+        {#if ready}
+            <Select 
+                items={modes} 
+                on:selected={selected}
+            />
+        {/if}
+    </div>
 </div>
+
+<style> 
+.n-t {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+}
+</style>

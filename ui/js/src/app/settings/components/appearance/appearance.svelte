@@ -9,7 +9,7 @@ import Theme from './theme.svelte'
         Appearance
     </div>
 
-    <div class="mt3">
+    <div class="mt4">
         <Theme/>
     </div>
 
