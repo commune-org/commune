@@ -17,8 +17,8 @@ username = "commune"
 password = "CaR6hxVWKBzYn"
 
 [db]
-client = "postgres://postgres:postgres@localhost:5432/commune?sslmode=disable" # postgres connection string
-matrix = "postgres://postgres:postgres@localhost:5432/synapse?sslmode=disable" # dendrite db connection string
+client = "postgres://postgres:postgres@localhost:5432/commune?sslmode=disable" 
+matrix = "postgres://postgres:postgres@localhost:5432/synapse?sslmode=disable"
 
 [redis]
 address = "localhost:6379"
