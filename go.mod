@@ -37,7 +37,7 @@ require (
 	github.com/matrix-org/dendrite v0.3.4
 	github.com/matrix-org/gomatrix v0.0.0-20200827122206-7dd5e2a05bcd
 	github.com/mattn/go-sqlite3 v1.14.8 // indirect
-	github.com/microcosm-cc/bluemonday v1.0.1
+	github.com/microcosm-cc/bluemonday v1.0.17
 	github.com/mrjones/oauth v0.0.0-20190623134757-126b35219450 // indirect
 	github.com/pquerna/otp v1.3.0 // indirect
 	github.com/pressly/goose v2.7.0+incompatible // indirect
@@ -47,13 +47,13 @@ require (
 	github.com/saintfish/chardet v0.0.0-20120816061221-3af4cd4741ca // indirect
 	github.com/sony/sonyflake v1.0.0 // indirect
 	github.com/temoto/robotstxt v1.1.1 // indirect
-	github.com/tidwall/gjson v1.6.7
+	github.com/tidwall/gjson v1.13.0
 	github.com/unrolled/secure v1.0.8
 	github.com/ziutek/mymysql v1.5.4 // indirect
 	golang.org/x/crypto v0.0.0-20210711020723-a769d52b0f97 // indirect
+	golang.org/x/net v0.0.0-20220114011407-0dd24b26b47d // indirect
 	golang.org/x/oauth2 v0.0.0-20210113205817-d3ed898aa8a3 // indirect
 	golang.org/x/sys v0.0.0-20210809222454-d867a43fc93e // indirect
-	golang.org/x/text v0.3.5 // indirect
 	google.golang.org/api v0.36.0
 	google.golang.org/genproto v0.0.0-20210122163508-8081c04a3579 // indirect
 	google.golang.org/grpc v1.35.0 // indirect
