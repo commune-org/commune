@@ -8,7 +8,7 @@ import Nav from './nav/nav.svelte'
 import Account from './components/account/account.svelte'
 import Appearance from './components/appearance/appearance.svelte'
 
-let active = false;
+let active = true;
 
 let kill =() => {
     active = false;
@@ -19,6 +19,7 @@ onMount(() => {
         active = !active
     }
 })
+
 $: if(active) {
     document.addEventListener('keydown', escape)
 } else {
@@ -32,20 +33,19 @@ function escape(e) {
 }
 
 function toggle() {
-    let mode = localStorage.getItem("light-mode");
-    if(mode && mode == "true") {
-        localStorage.removeItem("light-mode")
+    let theme = localStorage.getItem("theme");
+    if(theme && theme == "light") {
+        localStorage.removeItem("theme")
         document.documentElement.classList.remove('light')
     } else {
-        localStorage.setItem("light-mode", "true")
+        localStorage.setItem("theme", "light")
         document.documentElement.classList.add('light')
     }
 }
 
-let currentView = 'account'
-let currentComponent = Account
+let currentView = 'appearance'
+let currentComponent = Appearance
 
-currentView
 
 function navigate(e) {
     currentView = e.detail
@@ -171,21 +171,21 @@ let items = [
     background-color: var(--background-3);
     display: grid;
     overflow: hidden auto;
+    padding-left: 2rem;
+    padding-right: 1rem;
 }
 .content-container {
     justify-self: left;
     align-self: center;
     height: 100%;
-    margin-right: 1rem;
-    margin-left: 2rem;
     padding-top: 4rem;
     max-width: 740px;
     width: 100%;
 }
 .kill {
     position: fixed;
-    right: 3rem;
-    top: 3rem;
+    right: 1rem;
+    top: 1rem;
     z-index: 1003;
 }
 

@@ -6,16 +6,6 @@ import SidebarView from './view/view.svelte'
 
 let sidebar;
 
-function toggle() {
-    let mode = localStorage.getItem("light-mode");
-    if(mode && mode == "true") {
-        localStorage.removeItem("light-mode")
-        document.documentElement.classList.remove('light')
-    } else {
-        localStorage.setItem("light-mode", "true")
-        document.documentElement.classList.add('light')
-    }
-}
 
 $: isMobile = $store.isMobile
 $: mobileViewToggled = $store.mobileViewToggled

@@ -11,8 +11,8 @@
   </head>
   <body>
 <script nonce={{.Nonce}}>
-    let mode = localStorage.getItem('light-mode')
-    if(mode && mode == "true") {
+    let theme = localStorage.getItem('theme')
+    if(theme && theme == "light") {
         document.documentElement.classList.add('light')
     }
 </script>

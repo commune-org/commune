@@ -13,8 +13,8 @@ import Tooltip from './components/tooltip/tooltip.svelte'
 import Alert from './components/alert/alert.svelte'
 
 onMount(() => {
-    let mode = localStorage.getItem("light-mode");
-    if(mode && mode == "true") {
+    let theme = localStorage.getItem("theme");
+    if(theme && theme == "light") {
         document.documentElement.classList.add('light')
     } 
     document.title = `Commune`
