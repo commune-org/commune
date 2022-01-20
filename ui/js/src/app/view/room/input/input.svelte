@@ -305,6 +305,11 @@ function uploaded(e) {
 :root {
     --chat-input: #40444b;
 }
+:root.light {
+    --chat-input: #f2f3f5;
+}
+
+
 .chat-input {
     min-height: 48px;
     background-color: var(--chat-input);

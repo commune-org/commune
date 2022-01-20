@@ -1,7 +1,5 @@
 <script>
 import { onMount } from 'svelte'
-import { fade, fly } from 'svelte/transition'
-import { store } from '../store/store.js'
 import { closeBig } from '../utils/icons.js'
 import Nav from './nav/nav.svelte'
 
@@ -100,10 +98,8 @@ let items = [
 
 {#if active}
 <div class="mask gr-default no-select" 
-    on:click|self={kill}
-    transition:fade="{{duration: 100}}">
-    <div class="modal gr-center flex flex-column" 
-        transition:fade="{{ duration: 100 }}">
+    on:click|self={kill}>
+    <div class="modal gr-center flex flex-column" >
         <div class="con flex">
             <div class="settings-sidebar scrl">
                 <Nav 

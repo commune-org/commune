@@ -31,4 +31,7 @@ function go() {
 .active {
     background-color: var(--background-11);
 }
+.active:hover {
+    background-color: var(--background-11);
+}
 </style>

@@ -1117,6 +1117,12 @@ function mentionUser() {
     transition: 0.1s;
 }
 
+:root {
+    --room-event-hover: #f8f8f8;
+    transition: 0.1s;
+}
+
+
 .hov:hover {
     background-color: var(--room-event-hover);
 }

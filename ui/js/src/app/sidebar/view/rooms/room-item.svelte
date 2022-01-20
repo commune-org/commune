@@ -141,12 +141,19 @@ $: icon = chatroom ? hash : topics
 .room-item {
     padding: 0 0.5rem;
 }
+:root {
+    --ri-ni: #40444b;
+}
+:root.light {
+    --ri-ni: #f2f3f5;
+}
+
+
 .room-item-container {
     padding: 0.5rem 0.75rem;
     border-radius: 5px;
     cursor: pointer;
     margin-bottom: 3px;
-    color: var(--text-light);
 }
 .room-item-container:hover {
     background-color: var(--background-6);
