@@ -3,12 +3,6 @@ import Preview from './preview.svelte'
 import Theme from './theme.svelte'
 import Display from './display.svelte'
 
-let displayMode;
-
-function updateMessageDisplay(e) {
-    displayMode = e.detail
-}
-
 </script>
 
 <div class="appearance-settings-container fl-co">
@@ -18,7 +12,7 @@ function updateMessageDisplay(e) {
     </div>
     
     <div class="mt3">
-        <Preview mode={displayMode}/>
+        <Preview/>
     </div>
 
 
@@ -27,7 +21,7 @@ function updateMessageDisplay(e) {
     </div>
 
     <div class="mt3">
-        <Display on:message-display={updateMessageDisplay}/>
+        <Display/>
     </div>
 
 

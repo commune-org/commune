@@ -3,6 +3,9 @@ import { navigate } from 'svelte-navigator'
 
 function createApp() {
 
+  let theme = localStorage.getItem("theme");
+  let displayMode = localStorage.getItem("message-display");
+
   let app = {
     loadingMessage: 'Calibrating',
     active: false,
@@ -13,6 +16,8 @@ function createApp() {
       switcher: {
         mode: 'normal',
       },
+      theme: theme === "light" ? "light" : theme === "sync" ? "sync" : "dark",
+      displayMode: displayMode === "compact" ? "compact" : "cozy",
     },
     events: [],
     temp_events: [],
@@ -2218,6 +2223,13 @@ let eventFromHomeServer = (room_id) => {
   return homeServerFromUserID(room_id) == homeServerFromUserID(app.active_account)
 }
 
+  let updateDisplayMode = (mode) => {
+    update(p => {
+      p.settings.displayMode = mode
+      return p
+    })
+  }
+
 
   return {
     subscribe,
@@ -2269,6 +2281,7 @@ let eventFromHomeServer = (room_id) => {
     switchToAccount,
     rejectDMRequest,
     acceptDMRequest,
+      updateDisplayMode,
   };
 }
 

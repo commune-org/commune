@@ -1,8 +1,7 @@
 <script>
+import { store } from '../../../store/store'
 import Select from '../../../components/ui/select/select.svelte'
-import {onMount, createEventDispatcher} from 'svelte'
-
-const dispatch = createEventDispatcher();
+import {onMount} from 'svelte'
 
 let ready = false;
 let modes;
@@ -24,14 +23,9 @@ onMount(() => {
             selected: isCompact,
         },
     ]
-    dispatchChange(isCompact ? "compact" : "cozy")
 
     ready = true
 })
-
-function dispatchChange(mode) {
-    dispatch('message-display', mode)
-}
 
 
 function selected(e) {
@@ -41,11 +35,11 @@ function selected(e) {
     switch (selected.name) {
         case "compact":
             localStorage.setItem("message-display", "compact")
-            dispatchChange("compact")
+            store.updateDisplayMode("compact")
         break;
         case "cozy":
             localStorage.removeItem("message-display")
-            dispatchChange("cozy")
+            store.updateDisplayMode("cozy")
         break;
     }
 }

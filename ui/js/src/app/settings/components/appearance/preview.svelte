@@ -1,9 +1,9 @@
 <script>
+import { store } from '../../../store/store'
+
 import { logo as user } from '../../../switcher/home/logo'
 
-export let mode;
-
-$: compact = mode === "compact"
+$: compact = $store.settings.displayMode === "compact"
 
 let events = [
     {
@@ -60,9 +60,13 @@ function when() {
 <div class="p-c"> 
     <div class="p-i fl-co pa3"> 
         {#each events as event}
-            <div class="event-item mb2 flex" class:mb3={event.skip && !compact}> 
+            <div class="event-item mb1 flex" 
+            class:mb3={event.skip && !compact}> 
 
-                <div class="pi-co">
+            {#if !compact}
+                
+
+                <div class="pi-co mr3">
 
                     {#if !event.skip && !compact}
                         
@@ -83,8 +87,20 @@ function when() {
 
                 </div>
 
+            {:else}
+                        <div class="mb1 flex mr2"> 
+                            <div class="when"> 
+                                {when()}
+                            </div>
+                            <div class="name ml2"> 
+                                <strong>{name}</strong>
+                            </div>
+                        </div>
 
-                <div class="ml3 fl-co flex-one"> 
+            {/if}
+
+
+                <div class="fl-co flex-one"> 
                     {#if !event.skip && !compact}
                         <div class="mb1 flex"> 
                             <div class="name"> 
