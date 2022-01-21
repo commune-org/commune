@@ -2,6 +2,7 @@
 import Preview from './preview.svelte'
 import Theme from './theme.svelte'
 import Display from './display.svelte'
+import Scaling from './scaling.svelte'
 
 </script>
 
@@ -20,12 +21,13 @@ import Display from './display.svelte'
         <Theme/>
     </div>
 
-    <div class="mt3">
+    <div class="mt4">
         <Display/>
     </div>
 
 
-    <div class="">
+    <div class="mt4">
+        <Scaling/>
     </div>
 
 </div>
