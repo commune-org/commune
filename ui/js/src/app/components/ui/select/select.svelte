@@ -9,7 +9,9 @@ export let items;
 
 function select(item) { 
     let state = _items[item.detail]?.selected
-    _items[item.detail].selected = !state
+    if(!state) {
+        _items[item.detail].selected = !state
+    }
     if(!multiple) {
         _items.forEach((x, i) => {
             if(i != item.detail) {

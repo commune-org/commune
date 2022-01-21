@@ -1,7 +1,8 @@
 <script>
 import { store } from '../../store/store.js'
 import {onMount, tick} from 'svelte'
-import { user as userIcon, accountSettings, back } from '../../utils/icons.js'
+import { accountSettings, back } from '../../utils/icons.js'
+import { logo as userIcon } from '../../switcher/home/logo'
 
 import AccountItem from './account-item.svelte'
 

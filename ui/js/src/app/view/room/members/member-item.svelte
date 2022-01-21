@@ -1,6 +1,5 @@
 <script>
-import { store } from '../../../store/store.js'
-import {user} from '../../../utils/icons.js'
+import { logo as user } from '../../../switcher/home/logo'
 
 export let user_id;
 export let info;

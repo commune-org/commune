@@ -11,7 +11,7 @@ import {useLocation, navigate} from 'svelte-navigator'
 const location = useLocation()
 
 import { store } from '../../../store/store.js'
-import { user } from '../../../utils/icons.js'
+import { logo as user } from '../../../switcher/home/logo'
 import { thread as threadIcon, addReaction } from '../../../utils/icons.js'
 
 import { formatTime ,timeofDay, formatThreadTime, threadTimeAgo } from '../../../utils/time.js'
@@ -1117,7 +1117,7 @@ function mentionUser() {
     transition: 0.1s;
 }
 
-:root {
+:root.light {
     --room-event-hover: #f8f8f8;
     transition: 0.1s;
 }
