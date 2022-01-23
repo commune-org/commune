@@ -1,37 +1,11 @@
 <script>
-import DropDown from '../../../components/ui/dropdown/dropdown.svelte'
+import RangeSlider from '../../../components/ui/range-slider/RangeSlider.svelte'
 
-let items = [
-    {
-        name: "smallest",
-        text: "Smallest",
-    },
-    {
-        name: "smaller",
-        text: "Smaller",
-    },
-    {
-        name: "small",
-        text: "Small",
-    },
-    {
-        name: "normal",
-        text: "Normal",
-        default: true,
-    },
-    {
-        name: "large",
-        text: "Large",
-    },
-    {
-        name: "larger",
-        text: "Larger",
-    },
-    {
-        name: "largest",
-        text: "Largest",
-    },
-]
+
+function deal(e) {
+    console.log(e.detail)
+}
+
 </script>
 
 <div class="fl-co">  
@@ -41,14 +15,18 @@ let items = [
 
     <div class="">
 
-        <DropDown items={items} />
+        <RangeSlider 
+        min={12}
+        max={24}
+        step={2}
+        values={[16]} 
+        suffix="px"
+        on:change={deal}
+        pips all='label'/>
+
 
     </div>
 
-    ok
-    <div class="">
-        loll
-    </div>
 </div>
 
 <style> 
