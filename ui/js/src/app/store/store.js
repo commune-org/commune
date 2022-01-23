@@ -5,6 +5,11 @@ function createApp() {
 
   let theme = localStorage.getItem("theme");
   let displayMode = localStorage.getItem("message-display");
+  let fontScaling = localStorage.getItem("font-scaling");
+
+  if(!fontScaling || fontScaling < 12 || fontScaling > 24) {
+    fontScaling = 16
+  }
 
   let app = {
     loadingMessage: 'Calibrating',
@@ -18,6 +23,7 @@ function createApp() {
       },
       theme: theme === "light" ? "light" : theme === "sync" ? "sync" : "dark",
       displayMode: displayMode === "compact" ? "compact" : "cozy",
+      fontScaling: fontScaling,
     },
     events: [],
     temp_events: [],
@@ -2229,6 +2235,12 @@ let eventFromHomeServer = (room_id) => {
       return p
     })
   }
+  let updateFontScaling = (scaling) => {
+    update(p => {
+      p.settings.fontScaling = scaling
+      return p
+    })
+  }
 
 
   return {
@@ -2281,7 +2293,8 @@ let eventFromHomeServer = (room_id) => {
     switchToAccount,
     rejectDMRequest,
     acceptDMRequest,
-      updateDisplayMode,
+    updateDisplayMode,
+    updateFontScaling,
   };
 }
 

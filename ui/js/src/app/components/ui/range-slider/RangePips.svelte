@@ -59,8 +59,16 @@
 </script>
 
 <style>
+:root {
+    --nub: #4f545c;
+    --mco: #4ba54b;
+}
+:root.light {
+    --nub: #dcddde;
+    --mco: #4ba54b;
+}
   :global(.rangeSlider) {
-    --pip: var(--range-pip, lightslategray);
+    --pip: var(--nub);
     --pip-text: var(--range-pip-text, var(--pip));
     --pip-active: var(--range-pip-active, darkslategrey);
     --pip-active-text: var(--range-pip-active-text, var(--pip-active));
@@ -85,10 +93,12 @@
     bottom: 0;
   }
   :global(.rangePips .pip) {
-    height: 0.4em;
+    height: 0.8em;
     position: absolute;
-    top: 0.25em;
-    width: 1px;
+    top: -0.5em;
+    width: 0.8em;
+    margin-left: -7px;
+    border-radius: 50%;
     white-space: nowrap;
   }
   :global(.rangePips.vertical .pip) {
@@ -100,8 +110,10 @@
   }
   :global(.rangePips .pipVal) {
     position: absolute;
-    top: 0.4em;
+    top: 1.6em;
+    left: 0.5em;
     transform: translate(-50%, 25%);
+    font-size: 0.8rem;
   }
   :global(.rangePips.vertical .pipVal) {
     position: absolute;
@@ -116,28 +128,20 @@
     transition: all 0.15s ease, font-weight 0s linear;
   }
   :global(.rangePips .pip) {
-    color: lightslategray;
-    color: var(--pip-text);
+    color: var(--text-muted);
     background-color: lightslategray;
     background-color: var(--pip);
+    z-index: 5;
   }
   :global(.rangePips .pip.selected) {
-    color: darkslategrey;
-    color: var(--pip-active-text);
-    background-color: darkslategrey;
-    background-color: var(--pip-active);
+      color: var(--mco);
   }
   :global(.rangePips.hoverable:not(.disabled) .pip:hover) {
-    color: darkslategrey;
-    color: var(--pip-hover-text);
-    background-color: darkslategrey;
-    background-color: var(--pip-hover);
+      color: var(--white);
+      background-color: var(--white);
   }
   :global(.rangePips .pip.in-range) {
-    color: darkslategrey;
-    color: var(--pip-in-range-text);
-    background-color: darkslategrey;
-    background-color: var(--pip-in-range);
+      background-color: var(--mco);
   }
   :global(.rangePips .pip.selected) {
     height: 0.75em;
@@ -148,7 +152,6 @@
   }
   :global(.rangePips .pip.selected .pipVal) {
     font-weight: bold;
-    top: 0.75em;
   }
   :global(.rangePips.vertical .pip.selected .pipVal) {
     top: 0;

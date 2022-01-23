@@ -33,7 +33,7 @@
 
   // stylistic props
   export let precision = 2;
-  export let springValues = { stiffness: 0.15, damping: 0.4 };
+  export let springValues = { stiffness: 0.2, damping: 1 };
 
   // prepare dispatched events
   const dispatch = createEventDispatcher();
@@ -577,8 +577,18 @@
 </script>
 
 <style>
+
+:root {
+    --bg-track: #4f545c;
+    --mco: #4ba54b;
+}
+:root.light {
+    --bg-track: #dcddde;
+    --mco: #4ba54b;
+}
+
   :global(.rangeSlider) {
-    --slider: var(--range-slider, #d7dada);
+    --slider: var(--bg-track);
     --handle-inactive: var(--range-handle-inactive, #99a2a2);
     --handle: var(--range-handle, #838de7);
     --handle-focus: var(--range-handle-focus, #4a40d4);
@@ -592,11 +602,14 @@
   :global(.rangeSlider) {
     position: relative;
     border-radius: 100px;
-    height: 0.5em;
+    height: 4px;
     margin-top: 1em;
     margin-bottom: 1em;
-    transition: opacity 0.2s ease;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    transition: opacity 0.1s ease;
     user-select: none;
+    cursor: pointer;
   }
   :global(.rangeSlider *) {
     user-select: none;
@@ -649,9 +662,10 @@
     top: 0;
     display: block;
     border-radius: 10em;
-    height: 100%;
-    width: 100%;
-    transition: box-shadow 0.2s ease;
+    height: 20px;
+    width: 20px;
+    transition: box-shadow 0.1s ease;
+    cursor: grab;
   }
   :global(.rangeSlider .rangeHandle:before) {
     content: "";
@@ -711,7 +725,7 @@
     opacity: 0;
     pointer-events: none;
     white-space: nowrap;
-    transition: all 0.2s ease;
+    transition: all 0.1s ease;
     font-size: 0.9em;
     padding: 0.2em 0.4em;
     border-radius: 0.2em;
@@ -725,9 +739,9 @@
   :global(.rangeSlider .rangeBar) {
     position: absolute;
     display: block;
-    transition: background 0.2s ease;
+    transition: background 0.1s ease;
     border-radius: 1em;
-    height: 0.5em;
+    height: 4px;
     top: 0;
     user-select: none;
     z-index: 1;
@@ -742,23 +756,20 @@
   }
   :global(.rangeSlider .rangeBar) {
     background-color: #99a2a2;
-    background-color: var(--range-inactive);
+    background-color: var(--mco);
   }
   :global(.rangeSlider.focus .rangeBar) {
     background-color: #838de7;
-    background-color: var(--range);
+    background-color: var(--mco);
   }
   :global(.rangeSlider .rangeNub) {
-    background-color: #99a2a2;
-    background-color: var(--handle-inactive);
+    background-color: var(--mco);
   }
   :global(.rangeSlider.focus .rangeNub) {
-    background-color: #838de7;
-    background-color: var(--handle);
+    background-color: var(--mco);
   }
   :global(.rangeSlider .rangeHandle.active .rangeNub) {
-    background-color: #4a40d4;
-    background-color: var(--handle-focus);
+    background-color: var(--mco);
   }
   :global(.rangeSlider .rangeFloat) {
     color: white;
@@ -808,7 +819,7 @@
       on:blur={sliderBlurHandle}
       on:focus={sliderFocusHandle}
       on:keydown={sliderKeydown}
-      style="{orientationStart}: {$springPositions[index]}%; z-index: {activeHandle === index ? 3 : 2};"
+      style="{orientationStart}: {$springPositions[index]}%; z-index: {activeHandle === index ? 7 : 6};"
       aria-valuemin={range === true && index === 1 ? values[0] : min}
       aria-valuemax={range === true && index === 0 ? values[1] : max}
       aria-valuenow={value}

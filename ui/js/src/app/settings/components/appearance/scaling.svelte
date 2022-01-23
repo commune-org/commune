@@ -1,10 +1,16 @@
 <script>
+import { store } from '../../../store/store.js'
 import RangeSlider from '../../../components/ui/range-slider/RangeSlider.svelte'
 
 
-function deal(e) {
-    console.log(e.detail)
+function update(e) {
+    let newVal = e.detail.value
+    localStorage.setItem("font-scaling", newVal);
+    store.updateFontScaling(newVal)
 }
+
+
+$: scaling = $store.settings?.fontScaling
 
 </script>
 
@@ -13,17 +19,18 @@ function deal(e) {
         font scaling
     </div>
 
+
     <div class="">
 
-        <RangeSlider 
-        min={12}
-        max={24}
-        step={2}
-        values={[16]} 
-        suffix="px"
-        on:change={deal}
-        pips all='label'/>
-
+            <RangeSlider 
+            min={12}
+            max={24}
+            range="min"
+            step={2}
+            values={[scaling]} 
+            suffix="px"
+            on:change={update}
+            pips all="label"/>
 
     </div>
 
