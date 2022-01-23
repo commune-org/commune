@@ -6,32 +6,32 @@ import RangeSlider from '../../../components/ui/range-slider/RangeSlider.svelte'
 function update(e) {
     let newVal = e.detail.value
     if(newVal == 16) {
-        localStorage.removeItem("font-scaling")
+        localStorage.removeItem("event-spacing")
     } else {
-        localStorage.setItem("font-scaling", newVal);
+        localStorage.setItem("event-spacing", newVal);
     }
-    store.updateFontScaling(newVal)
+    store.updateEventSpacing(newVal)
 }
 
 
-$: scaling = $store.settings?.fontScaling
+$: spacing = $store.settings?.eventSpacing
 
 </script>
 
 <div class="fl-co">  
     <div class="n-t">
-        font scaling
+        space between messages & posts
     </div>
 
 
     <div class="">
 
             <RangeSlider 
-            min={12}
+            min={0}
             max={24}
             range="min"
-            step={2}
-            values={[scaling]} 
+            step={4}
+            values={[spacing]} 
             suffix="px"
             on:change={update}
             def={16}

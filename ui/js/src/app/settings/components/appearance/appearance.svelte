@@ -3,6 +3,7 @@ import Preview from './preview.svelte'
 import Theme from './theme.svelte'
 import Display from './display.svelte'
 import Scaling from './scaling.svelte'
+import Spacing from './spacing.svelte'
 
 </script>
 
@@ -28,6 +29,10 @@ import Scaling from './scaling.svelte'
 
     <div class="mt4">
         <Scaling/>
+    </div>
+
+    <div class="mt4">
+        <Spacing/>
     </div>
 
 </div>

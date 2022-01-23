@@ -5,10 +5,15 @@ function createApp() {
 
   let theme = localStorage.getItem("theme");
   let displayMode = localStorage.getItem("message-display");
-  let fontScaling = localStorage.getItem("font-scaling");
 
+  let fontScaling = localStorage.getItem("font-scaling");
   if(!fontScaling || fontScaling < 12 || fontScaling > 24) {
     fontScaling = 16
+  }
+
+  let eventSpacing = localStorage.getItem("event-spacing");
+  if(!eventSpacing || eventSpacing < 0 || eventSpacing > 24) {
+    eventSpacing = 16
   }
 
   let app = {
@@ -24,6 +29,7 @@ function createApp() {
       theme: theme === "light" ? "light" : theme === "sync" ? "sync" : "dark",
       displayMode: displayMode === "compact" ? "compact" : "cozy",
       fontScaling: fontScaling,
+      eventSpacing: eventSpacing,
     },
     events: [],
     temp_events: [],
@@ -2242,6 +2248,13 @@ let eventFromHomeServer = (room_id) => {
     })
   }
 
+  let updateEventSpacing = (spacing) => {
+    update(p => {
+      p.settings.eventSpacing = spacing
+      return p
+    })
+  }
+
 
   return {
     subscribe,
@@ -2295,6 +2308,7 @@ let eventFromHomeServer = (room_id) => {
     acceptDMRequest,
     updateDisplayMode,
     updateFontScaling,
+    updateEventSpacing,
   };
 }
 

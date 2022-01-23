@@ -10,6 +10,7 @@
   export let reversed = false;
   export let hoverable = true;
   export let disabled = false;
+  export let def;
 
   // range pips / values props
   export let pipstep = undefined;
@@ -164,6 +165,10 @@
     transition: none;
     font-weight: bold;
   }
+
+  .def {
+      outline: 3px solid var(--white);
+  }
 </style>
 
 <div 
@@ -196,6 +201,7 @@
       {#if pipVal(i) !== min && pipVal(i) !== max}
         <span
           class="pip"
+          class:def={def == pipVal(i)}
           class:selected={isSelected(pipVal(i))}
           class:in-range={inRange(pipVal(i))}
           style="{orientationStart}: {percentOf(pipVal(i))}%;"

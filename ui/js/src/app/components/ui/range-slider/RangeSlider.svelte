@@ -15,6 +15,7 @@
   export let reversed = false;
   export let hoverable = true;
   export let disabled = false;
+  export let def;
 
   // range pips / values props
   export let pips = false;
@@ -866,6 +867,7 @@
       {focus}
       {percentOf}
       {moveHandle}
+      {def}
     />
   {/if}
 </div>

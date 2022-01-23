@@ -5,6 +5,9 @@ import { logo as user } from '../../../switcher/home/logo'
 
 $: compact = $store.settings.displayMode === "compact"
 
+$: scaling = $store.settings?.fontScaling
+$: spacing = $store.settings?.eventSpacing
+
 let events = [
     {
         content: "TAKE, O take those lips away",
@@ -57,11 +60,13 @@ function when() {
 
 </script>
 
-<div class="p-c"> 
+<div class="p-c" 
+    style="--scaling:{scaling}px;"> 
     <div class="p-i fl-co pa3"> 
         {#each events as event}
             <div class="event-item mb1 flex" 
-            class:mb3={event.skip && !compact}> 
+            style="--spacing:{spacing}px;"
+            class:spacing={event.skip && !compact}> 
 
             {#if !compact}
                 
@@ -103,7 +108,7 @@ function when() {
                 <div class="fl-co flex-one"> 
                     {#if !event.skip && !compact}
                         <div class="mb1 flex"> 
-                            <div class="name"> 
+                            <div class="name">
                                 <strong>{name}</strong>
                             </div>
                             <div class="ml2 when"> 
@@ -111,7 +116,7 @@ function when() {
                             </div>
                         </div>
                     {/if}
-                    <div class=""> 
+                    <div class="pr-co">
                         {event.content}
                     </div>
                 </div>
@@ -129,6 +134,7 @@ function when() {
     background-color: var(--background-2);
     border-radius: 5px;
     overflow-y: hidden;
+    font-size: var(--scaling);
 }
 .p-i {
     word-wrap: break-word;
@@ -153,10 +159,13 @@ function when() {
 }
 .when {
     margin-top: 4px;
-    font-size: 0.8rem;
+    font-size: 0.8em;
     color: var(--text-muted);
 }
 .name {
     color: var(--white);
+}
+.spacing {
+    margin-bottom: calc(var(--spacing) + 0.7rem);
 }
 </style>
