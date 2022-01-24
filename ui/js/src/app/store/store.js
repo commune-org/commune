@@ -16,6 +16,11 @@ function createApp() {
     eventSpacing = 16
   }
 
+  let language = localStorage.getItem("language");
+  if(!language) {
+    language = "en"
+  }
+
   let app = {
     loadingMessage: 'Calibrating',
     active: false,
@@ -30,6 +35,7 @@ function createApp() {
       displayMode: displayMode === "compact" ? "compact" : "cozy",
       fontScaling: fontScaling,
       eventSpacing: eventSpacing,
+      language: language,
     },
     events: [],
     temp_events: [],

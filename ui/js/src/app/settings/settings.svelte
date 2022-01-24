@@ -5,6 +5,8 @@ import Nav from './nav/nav.svelte'
 
 import Account from './components/account/account.svelte'
 import Appearance from './components/appearance/appearance.svelte'
+import Accessibility from './components/accessibility/accessibility.svelte'
+import Language from './components/language/language.svelte'
 
 let active = true;
 
@@ -84,6 +86,16 @@ let items = [
                 title: "Appearance",
                 path: "appearance",
                 component: Appearance,
+            },
+            {
+                title: "Accessibility",
+                path: "accessibility",
+                component: Accessibility,
+            },
+            {
+                title: "Language",
+                path: "language",
+                component: Language,
             },
             {
                 title: "Notifications",

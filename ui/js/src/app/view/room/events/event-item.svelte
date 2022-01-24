@@ -758,7 +758,8 @@ $: isCompact = $store.settings?.displayMode === "compact"
         {/if}
 
 
-        <div class="flex flex-column ev-c flex-one">
+        <div class="flex flex-column flex-one" 
+            class:ev-c={!isCompact}>
 
             {#if !isCompact}
 
