@@ -2268,6 +2268,13 @@ let eventFromHomeServer = (room_id) => {
     })
   }
 
+  let updateLanguage = (lang) => {
+    update(p => {
+      p.settings.language = lang
+      return p
+    })
+  }
+
 
   return {
     subscribe,
@@ -2323,6 +2330,7 @@ let eventFromHomeServer = (room_id) => {
     updateDisplayMode,
     updateFontScaling,
     updateEventSpacing,
+    updateLanguage,
   };
 }
 

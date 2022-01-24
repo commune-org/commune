@@ -43,8 +43,8 @@ function toggle() {
     }
 }
 
-let currentView = 'appearance'
-let currentComponent = Appearance
+let currentView = 'accessibility'
+let currentComponent = Accessibility
 
 
 function navigate(e) {

@@ -9,18 +9,30 @@ $: languages = [
         name: "en", 
         caption: "English",
         selected: language === "en",
+        image: "🇺🇸"
     },
     {
         name: "fr", 
         caption: "French",
         selected: language === "fr",
+        image: "🇫🇷"
     },
     {
         name: "no", 
         caption: "Norwegian",
         selected: language === "no",
+        image: "🇳🇴"
     },
 ]
+
+
+function selected(e) {
+    languages = e.detail
+    let lang = languages.filter(x => x.selected)[0]?.name
+    localStorage.setItem("language", lang)
+    store.updateLanguage(lang)
+}
+
 </script>
 
 
@@ -37,7 +49,9 @@ $: languages = [
 
 
         <div class="">
-            <Select items={languages} />
+            <Select items={languages} 
+            on:selected={selected}
+            />
         </div>
     </div>
 

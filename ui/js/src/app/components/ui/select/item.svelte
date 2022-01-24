@@ -11,13 +11,14 @@ export let item;
 export let index;
 export let multiple;
 
-$: selected = item.selected;
+$: imageExists = item?.image?.length > 0
 
 </script>
 
 <div class="s-co flex"
     on:click={() => select()}
     class:selected={item.selected}>
+
     <div class="gr-center">
         <div class="rad gr-default" 
         class:rad-m={multiple}>
@@ -28,17 +29,23 @@ $: selected = item.selected;
             {/if}
         </div>
     </div>
+
     <div class="gr-center flex-one ml3 fl-co">
         <div class="">
             {item.caption}
         </div>
     </div>
+
+    {#if imageExists}
+        {item.image}
+    {/if}
+
 </div>
 
 <style> 
 .s-co {
     border-radius: 5px;
-    padding: 0.75rem 1rem;
+    padding: 0.75rem;
     background-color: var(--background-2);
     cursor: pointer;
     transition: 0.05s;
