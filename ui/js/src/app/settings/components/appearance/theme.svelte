@@ -1,16 +1,14 @@
 <script>
+import { store } from '../../../store/store.js'
 import Select from '../../../components/ui/select/select.svelte'
-import {onMount} from 'svelte'
 
-let ready = false;
-let modes;
 
-onMount(() => {
-    let theme = localStorage.getItem("theme");
-    let isLight = theme && theme == "light"
-    let isSync = theme && theme == "sync"
+$: theme = $store.settings?.theme
 
-    modes = [
+$: isLight = theme && theme == "light"
+$: isSync = theme && theme == "sync"
+
+$: modes = [
         {
             name: "dark",
             caption: "Dark",
@@ -28,12 +26,6 @@ onMount(() => {
         },
     ]
 
-
-
-    ready = true
-})
-
-
 function selected(e) {
     modes = e.detail
 
@@ -43,13 +35,16 @@ function selected(e) {
         case "light":
             localStorage.setItem("theme", "light")
             document.documentElement.classList.add('light')
+            store.updateTheme("light")
         break;
         case "dark":
             localStorage.removeItem("theme")
             document.documentElement.classList.remove('light')
+            store.updateTheme("dark")
         break;
         case "sync":
             localStorage.setItem("theme", "sync")
+            store.updateTheme("sync")
             if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
                 document.documentElement.classList.remove('light')
             } else { 
@@ -68,12 +63,10 @@ function selected(e) {
     </div>
 
     <div class="">
-        {#if ready}
             <Select 
                 items={modes} 
                 on:selected={selected}
             />
-        {/if}
     </div>
 </div>
 

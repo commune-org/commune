@@ -2235,6 +2235,13 @@ let eventFromHomeServer = (room_id) => {
   return homeServerFromUserID(room_id) == homeServerFromUserID(app.active_account)
 }
 
+  let updateTheme = (theme) => {
+    update(p => {
+      p.settings.theme = theme
+      return p
+    })
+  }
+
   let updateDisplayMode = (mode) => {
     update(p => {
       p.settings.displayMode = mode
@@ -2306,6 +2313,7 @@ let eventFromHomeServer = (room_id) => {
     switchToAccount,
     rejectDMRequest,
     acceptDMRequest,
+    updateTheme,
     updateDisplayMode,
     updateFontScaling,
     updateEventSpacing,

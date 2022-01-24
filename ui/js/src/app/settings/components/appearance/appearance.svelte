@@ -4,6 +4,7 @@ import Theme from './theme.svelte'
 import Display from './display.svelte'
 import Scaling from './scaling.svelte'
 import Spacing from './spacing.svelte'
+import Reset from './reset.svelte'
 
 </script>
 
@@ -31,8 +32,12 @@ import Spacing from './spacing.svelte'
         <Scaling/>
     </div>
 
-    <div class="mt4">
+    <div class="mt3">
         <Spacing/>
+    </div>
+
+    <div class="mt4">
+        <Reset/>
     </div>
 
 </div>

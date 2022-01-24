@@ -16,6 +16,7 @@ function update(e) {
 
 $: spacing = $store.settings?.eventSpacing
 
+
 </script>
 
 <div class="fl-co">  

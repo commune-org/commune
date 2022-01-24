@@ -3,15 +3,13 @@ import { store } from '../../../store/store'
 import Select from '../../../components/ui/select/select.svelte'
 import {onMount} from 'svelte'
 
-let ready = false;
-let modes;
 
-onMount(() => {
-    let md = localStorage.getItem("message-display");
-    let isCozy = md && md == "cozy"
-    let isCompact = md && md == "compact"
+$: md = $store.settings.displayMode
 
-    modes = [
+$: isCozy = md && md == "cozy"
+$: isCompact = md && md == "compact"
+
+$: modes = [
         {
             name: "cozy",
             caption: "Cozy: Modern, beautiful, and easy on your eyes.",
@@ -24,9 +22,6 @@ onMount(() => {
         },
     ]
 
-    ready = true
-})
-
 
 function selected(e) {
     modes = e.detail
@@ -36,13 +31,16 @@ function selected(e) {
         case "compact":
             localStorage.setItem("message-display", "compact")
             store.updateDisplayMode("compact")
+            store.updateEventSpacing(0)
         break;
         case "cozy":
             localStorage.removeItem("message-display")
             store.updateDisplayMode("cozy")
+            store.updateEventSpacing(16)
         break;
     }
 }
+
 
 </script>
 
@@ -53,13 +51,12 @@ function selected(e) {
     message display
     </div>
 
+
     <div class="">
-        {#if ready}
-            <Select 
-                items={modes} 
-                on:selected={selected}
-            />
-        {/if}
+        <Select 
+            items={modes} 
+            on:selected={selected}
+        />
     </div>
 </div>
 

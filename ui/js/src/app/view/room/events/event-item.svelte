@@ -634,6 +634,8 @@ function mentionUser() {
     })
 }
 
+$: fontScaling = $store.settings?.fontScaling
+
 
 </script>
 
@@ -643,6 +645,7 @@ function mentionUser() {
 
 
     <div id={id} class="room-event flex flex-column relative" 
+    style="font-size:{fontScaling}px;"
     bind:this={root}
     on:click={goToMessageEvent}
     class:pointer={splitView}
@@ -740,7 +743,7 @@ function mentionUser() {
                         on:click={mentionUser}>
                         <strong>{name}</strong>
                     </div>
-                    <div class="gr-center ml3 when">
+                    <div class="gr-center ml2 when">
                         {#if !splitView}
                             {when} {time}
                         {:else}
@@ -1056,7 +1059,7 @@ function mentionUser() {
             </div>
 
             {#if !splitView}
-                <div class="ml3 when">
+                <div class="ml2 when">
                     {when} {time}
                 </div>
             {/if}
@@ -1229,15 +1232,15 @@ function mentionUser() {
 }
 .when {
     margin-top: 4px;
-    font-size: 0.8rem;
+    font-size: 0.8em;
     color: var(--text-muted);
 }
 .wh-s {
-    font-size: 0.7rem;
+    font-size: 0.7em;
     color: var(--text-muted);
 }
 .when-sm {
-    font-size: 0.7rem;
+    font-size: 0.7em;
     color: var(--text-muted);
     position: absolute;
     left: 0;
@@ -1279,10 +1282,10 @@ function mentionUser() {
     min-height: 48px;
 }
 .ed-m {
-     font-size: 0.8rem;
+     font-size: 0.8em;
 }
 .edited {
-     font-size: 0.8rem;
+     font-size: 0.8em;
      color: var(--text-muted);
 }
 .replying{
@@ -1388,7 +1391,7 @@ function mentionUser() {
 .thread-info {
     background-color:var(--background-2);
     border-radius: 4px;
-    font-size: 0.9rem;
+    font-size: 0.9em;
     cursor: pointer;
 }
 

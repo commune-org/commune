@@ -34,7 +34,7 @@
 
   // stylistic props
   export let precision = 2;
-  export let springValues = { stiffness: 0.2, damping: 1 };
+  export let springValues = { stiffness: 1, damping: 1 };
 
   // prepare dispatched events
   const dispatch = createEventDispatcher();
