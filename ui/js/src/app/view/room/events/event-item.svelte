@@ -635,6 +635,8 @@ function mentionUser() {
 }
 
 $: fontScaling = $store.settings?.fontScaling
+$: eventSpacing = $store.settings?.eventSpacing
+$: isCompact = $store.settings?.displayMode === "compact"
 
 
 </script>
@@ -648,6 +650,7 @@ $: fontScaling = $store.settings?.fontScaling
     style="font-size:{fontScaling}px;"
     bind:this={root}
     on:click={goToMessageEvent}
+    class:re-p={!isCompact}
     class:pointer={splitView}
     class:high={highlighted && isHighlighted}
     class:hov={!highlightedEvent}
@@ -659,7 +662,7 @@ $: fontScaling = $store.settings?.fontScaling
     class:mentioned={isMentionedEvent} 
     on:contextmenu={rightClick}
     class:mb1={!nextMsgSameSender && splitView}
-    class:mb3={!nextMsgSameSender && !splitView}>
+    class:mb3={!nextMsgSameSender && !splitView && !isCompact}>
 
 
     {#if isReply}
@@ -699,33 +702,44 @@ $: fontScaling = $store.settings?.fontScaling
             class:ava-sv={splitView}
             class:pl3={!newThread && !splitView}
             class:pl2={!newThread && splitView}>
-            {#if !prevMsgSameSender || isReply || prevMsgDifferentType || hasThreads || prevMsgOlderThanHour} 
-                {#if newThread}
-                    <div class="thread-icon mb1 gr-center h-100">
-                        {@html threadIcon}
-                    </div>
-                {:else if avatarExists}
-                    <div class="profile-avatar ncol bg-img"
-                        class:pa-sv={splitView}
-                        style="background-image: url({avatar});">
-                    </div>
-                {:else}
-                    <div class="profile-avatar gr-default"
-                        class:pa-sv={splitView}>
-                        <div class="log gr-default gr-center"
-                            class:log-sv={splitView}>
-                            {@html user}
+
+            {#if !isCompact}
+                {#if !prevMsgSameSender || isReply || prevMsgDifferentType || hasThreads || prevMsgOlderThanHour} 
+                    {#if newThread}
+                        <div class="thread-icon mb1 gr-center h-100">
+                            {@html threadIcon}
                         </div>
-                    </div>
+                    {:else if avatarExists}
+                        <div class="profile-avatar ncol bg-img"
+                            class:pa-sv={splitView}
+                            style="background-image: url({avatar});">
+                        </div>
+                    {:else}
+                        <div class="profile-avatar gr-default"
+                            class:pa-sv={splitView}>
+                            <div class="log gr-default gr-center"
+                                class:log-sv={splitView}>
+                                {@html user}
+                            </div>
+                        </div>
+                    {/if}
                 {/if}
             {/if}
+
             {#if prevMsgSameSender && !isReply && !hasThreads && !prevMsgOlderThanHour}
                     <div class="when-sm gr-default">
                         <div class="gr-center">
                             {postTime}
                         </div>
                     </div>
+            {:else if isCompact}
+                    <div class="when-sm gr-default op-1">
+                        <div class="gr-center">
+                            {postTime}
+                        </div>
+                    </div>
             {/if}
+
 
             {#if hasThreads}
 
@@ -734,24 +748,39 @@ $: fontScaling = $store.settings?.fontScaling
             {/if}
         </div>
 
+        {#if isCompact}
+            <div class="gr-center-top username mr2" 
+                data-username={username}
+                data-userid={event?.sender}
+                on:click={mentionUser}>
+                <strong>{name}</strong>
+            </div>
+        {/if}
+
+
         <div class="flex flex-column ev-c flex-one">
-            {#if (!prevMsgSameSender || isReply || prevMsgDifferentType || hasThreads || prevMsgOlderThanHour) && !newThread}
-                <div class="flex mb1">
-                    <div class="gr-center username" 
-                        data-username={username}
-                        data-userid={event?.sender}
-                        on:click={mentionUser}>
-                        <strong>{name}</strong>
+
+            {#if !isCompact}
+
+                {#if (!prevMsgSameSender || isReply || prevMsgDifferentType || hasThreads || prevMsgOlderThanHour) && !newThread}
+                    <div class="flex mb1">
+                        <div class="gr-center username" 
+                            data-username={username}
+                            data-userid={event?.sender}
+                            on:click={mentionUser}>
+                            <strong>{name}</strong>
+                        </div>
+                        <div class="gr-center ml2 when">
+                            {#if !splitView}
+                                {when} {time}
+                            {:else}
+                                {time}
+                            {/if}
+                        </div>
                     </div>
-                    <div class="gr-center ml2 when">
-                        {#if !splitView}
-                            {when} {time}
-                        {:else}
-                            {time}
-                        {/if}
-                    </div>
-                </div>
+                {/if}
             {/if}
+
 
             {#if newThread}
 
@@ -762,7 +791,7 @@ $: fontScaling = $store.settings?.fontScaling
 
             {:else if !editing}
             <div class="content-body" 
-                class:emj={onlyEmoji}
+                class:emj={onlyEmoji && !isCompact}
                 class:clmp-1={splitView}
                 bind:this={body} 
                 class:mute={!event?.delivered}>
@@ -1074,6 +1103,9 @@ $: fontScaling = $store.settings?.fontScaling
 .topic-item {
 }
 .room-event {
+}
+
+.re-p {
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
 }
@@ -1224,7 +1256,6 @@ $: fontScaling = $store.settings?.fontScaling
 
 .ava {
     min-width: calc(40px + 2rem);
-    margin-top: 4px;
 }
 .ava-sv {
     min-width: calc(24px + 1rem);

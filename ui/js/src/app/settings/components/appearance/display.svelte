@@ -32,11 +32,13 @@ function selected(e) {
             localStorage.setItem("message-display", "compact")
             store.updateDisplayMode("compact")
             store.updateEventSpacing(0)
+            localStorage.setItem("event-spacing", 0)
         break;
         case "cozy":
             localStorage.removeItem("message-display")
             store.updateDisplayMode("cozy")
             store.updateEventSpacing(16)
+            localStorage.removeItem("event-spacing")
         break;
     }
 }
