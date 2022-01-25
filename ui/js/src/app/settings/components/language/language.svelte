@@ -4,24 +4,22 @@ import Select from '../../../components/ui/select/select.svelte'
 
 $: language = $store.settings.language
 
+$: localeList = $store.locale?.settings?.language?.locale
+
 $: languages = [
     {
-        name: "en", 
-        caption: "English",
-        selected: language === "en",
-        image: "🇺🇸"
+        name: "en_US", 
+        caption: "English, US",
+        selected: language === "en_US",
+        image: "🇺🇸",
+        imageLabel: localeList["en_US"],
     },
     {
         name: "fr", 
         caption: "French",
         selected: language === "fr",
-        image: "🇫🇷"
-    },
-    {
-        name: "no", 
-        caption: "Norwegian",
-        selected: language === "no",
-        image: "🇳🇴"
+        image: "🇫🇷",
+        imageLabel: localeList["fr"],
     },
 ]
 
@@ -29,8 +27,15 @@ $: languages = [
 function selected(e) {
     languages = e.detail
     let lang = languages.filter(x => x.selected)[0]?.name
-    localStorage.setItem("language", lang)
-    store.updateLanguage(lang)
+    //localStorage.setItem("language", lang)
+    //store.updateLanguage(lang)
+
+    import(`./locale/${lang}.js`).then(d => {
+        if(d) {
+            localStorage.setItem("language", lang)
+            store.updateLanguage(lang, d.default)
+        }
+    })
 }
 
 </script>
@@ -41,7 +46,7 @@ function selected(e) {
     <div class="title">
         Language
     </div>
-    
+
     <div class="fl-co mt4">  
         <div class="n-t">
             select a language

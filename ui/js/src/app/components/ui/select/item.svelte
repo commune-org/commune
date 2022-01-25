@@ -12,6 +12,7 @@ export let index;
 export let multiple;
 
 $: imageExists = item?.image?.length > 0
+$: imageLabelExists = item?.imageLabel?.length > 0
 
 </script>
 
@@ -36,8 +37,17 @@ $: imageExists = item?.image?.length > 0
         </div>
     </div>
 
+    {#if imageLabelExists}
+        <div class="mr2">
+            {item.imageLabel}
+        </div>
+    {/if}
+
+
     {#if imageExists}
-        {item.image}
+        <div class="">
+            {item.image}
+        </div>
     {/if}
 
 </div>

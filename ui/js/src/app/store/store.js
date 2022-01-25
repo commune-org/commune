@@ -3,6 +3,7 @@ import { navigate } from 'svelte-navigator'
 
 function createApp() {
 
+
   let theme = localStorage.getItem("theme");
   let displayMode = localStorage.getItem("message-display");
 
@@ -18,7 +19,7 @@ function createApp() {
 
   let language = localStorage.getItem("language");
   if(!language) {
-    language = "en"
+    language = "en_US"
   }
 
   let app = {
@@ -55,7 +56,15 @@ function createApp() {
       mentionUser: null,
     },
     alerts: [],
+    locale: null,
   }
+
+  import(`../settings/components/language/locale/${language}.js`).then(d => {
+    if(d) {
+      app.locale = d.default
+    }
+  })
+
 
   let buildServer = (rooms, events, serverID) => {
     let server = {}
@@ -2268,12 +2277,15 @@ let eventFromHomeServer = (room_id) => {
     })
   }
 
-  let updateLanguage = (lang) => {
+  let updateLanguage = (lang, data) => {
     update(p => {
       p.settings.language = lang
+      p.locale = data
+
       return p
     })
   }
+
 
 
   return {

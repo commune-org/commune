@@ -19,6 +19,8 @@ onMount(() => {
     } 
     document.title = `Commune`
     store.activate()
+
+
 })
 
 
