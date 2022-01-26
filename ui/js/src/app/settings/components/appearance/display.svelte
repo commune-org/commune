@@ -29,16 +29,14 @@ function selected(e) {
     let selected = modes.filter(x => x.selected)[0]
     switch (selected.name) {
         case "compact":
-            localStorage.setItem("message-display", "compact")
-            store.updateDisplayMode("compact")
-            store.updateEventSpacing(0)
-            localStorage.setItem("event-spacing", 0)
+            $store.settings.appearance.displayMode = "compact"
+            $store.settings.appearance.eventSpacing = 0
+            store.saveSettings()
         break;
         case "cozy":
-            localStorage.removeItem("message-display")
-            store.updateDisplayMode("cozy")
-            store.updateEventSpacing(16)
-            localStorage.removeItem("event-spacing")
+            $store.settings.appearance.displayMode = "cozy"
+            $store.settings.appearance.eventSpacing = 16
+            store.saveSettings()
         break;
     }
 }

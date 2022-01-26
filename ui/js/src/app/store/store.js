@@ -3,31 +3,6 @@ import { navigate } from 'svelte-navigator'
 
 function createApp() {
 
-
-  let theme = localStorage.getItem("theme");
-  let displayMode = localStorage.getItem("message-display");
-
-  let fontScaling = localStorage.getItem("font-scaling");
-  if(!fontScaling || fontScaling < 12 || fontScaling > 24) {
-    fontScaling = 16
-  }
-
-  let eventSpacing = localStorage.getItem("event-spacing");
-  if(!eventSpacing || eventSpacing < 0 || eventSpacing > 24) {
-    eventSpacing = 16
-  }
-
-  let language = localStorage.getItem("language");
-  if(!language) {
-    language = "en_US"
-  }
-
-  let saturation = localStorage.getItem("saturation");
-  if(!saturation) {
-    saturation = 100
-  }
-
-
   let app = {
     loadingMessage: 'Calibrating',
     active: false,
@@ -39,15 +14,15 @@ function createApp() {
         mode: 'normal',
       },
       appearance: {
-        theme: theme === "light" ? "light" : theme === "sync" ? "sync" : "dark",
-        displayMode: displayMode === "compact" ? "compact" : "cozy",
-        fontScaling: fontScaling,
-        eventSpacing: eventSpacing,
+        theme: window.settings?.appearance?.theme || "dark",
+        displayMode: window.settings?.appearance?.displayMode || "cozy",
+        fontScaling: window.settings?.appearance?.fontScaling || 16,
+        eventSpacing: window.settings?.appearance?.eventSpacing || 16,
       },
       accessibility: {
-        saturation: saturation,
+        saturation: window.settings?.accessibility?.saturation || 100,
       },
-      language: language,
+      language: window.settings?.language || "en_US",
     },
     events: [],
     temp_events: [],
@@ -70,7 +45,11 @@ function createApp() {
     locale: null,
   }
 
-  import(`../settings/components/language/locale/${language}.js`).then(d => {
+  if(!window.settings) {
+    localStorage.setItem('settings', JSON.stringify(app.settings))
+  }
+
+  import(`../settings/components/language/locale/${app.settings.language}.js`).then(d => {
     if(d) {
       app.locale = d.default
     }
@@ -2301,9 +2280,18 @@ let eventFromHomeServer = (room_id) => {
   let updateSaturation = (val) => {
     update(p => {
       p.settings.accessibility.saturation = val
+      saveSettings()
       return p
     })
   }
+
+  let saveSettings = () => {
+    update(p => {
+      localStorage.setItem('settings', JSON.stringify(p.settings))
+      return p
+    })
+  }
+
 
 
 
@@ -2363,6 +2351,7 @@ let eventFromHomeServer = (room_id) => {
     updateEventSpacing,
     updateLanguage,
     updateSaturation,
+    saveSettings,
   };
 }
 

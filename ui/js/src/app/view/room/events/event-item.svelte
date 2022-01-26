@@ -1153,6 +1153,12 @@ $: isCompact = $store.settings?.appearance?.displayMode === "compact"
     transition: 0.1s;
 }
 
+:root.black {
+    --room-event-hover: #000;
+    transition: 0.1s;
+}
+
+
 :root.light {
     --room-event-hover: #f8f8f8;
     transition: 0.1s;

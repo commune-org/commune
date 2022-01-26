@@ -13,7 +13,7 @@ $: modes = [
         {
             name: "dark",
             caption: "Dark",
-            selected: !isLight && !isSync,
+            selected: !isLight && !isBlack && !isSync,
         },
         {
             name: "light",
@@ -38,22 +38,23 @@ function selected(e) {
     let selected = modes.filter(x => x.selected)[0]
     switch (selected.name) {
         case "light":
-            localStorage.setItem("theme", "light")
             document.documentElement.classList.add('light')
             document.documentElement.classList.remove('black')
-            store.updateTheme("light")
+            $store.settings.appearance.theme = "light"
+            store.saveSettings()
         break;
         case "black":
-            localStorage.setItem("theme", "black")
             document.documentElement.classList.add('black')
             document.documentElement.classList.remove('light')
-            store.updateTheme("black")
+            $store.settings.appearance.theme = "black"
+            store.saveSettings()
         break;
         case "dark":
             localStorage.removeItem("theme")
             document.documentElement.classList.remove('light')
             document.documentElement.classList.remove('black')
-            store.updateTheme("dark")
+            $store.settings.appearance.theme = "dark"
+            store.saveSettings()
         break;
         case "sync":
             localStorage.setItem("theme", "sync")

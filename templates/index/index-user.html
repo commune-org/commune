@@ -11,8 +11,13 @@
   </head>
   <body>
 <script nonce={{.Nonce}}>
-    let theme = localStorage.getItem('theme')
-    if(theme) {
+    let s = localStorage.getItem('settings')
+    if(s) {
+        window.settings = JSON.parse(s)
+    }
+
+    if(window.settings?.appearance?.theme) {
+        let theme = window.settings?.appearance?.theme
         switch (theme) {
             case "light":
                 document.documentElement.classList.add('light')
@@ -28,9 +33,9 @@
                 }
         }
     }
-    let saturation = localStorage.getItem('saturation')
-    if(saturation && saturation < 100) {
-        document.documentElement.style.filter = `saturate(${saturation/100})`
+    let saturation = window.settings?.accessibility?.saturation
+    if(saturation && saturation < 1) {
+        document.documentElement.style.filter = `saturate(${saturation})`
     }
 
 </script>

@@ -726,7 +726,6 @@
     opacity: 0;
     pointer-events: none;
     white-space: nowrap;
-    transition: all 0.1s ease;
     font-size: 0.9em;
     padding: 0.2em 0.4em;
     border-radius: 0.2em;

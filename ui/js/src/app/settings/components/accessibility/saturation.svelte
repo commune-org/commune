@@ -4,24 +4,24 @@ import RangeSlider from '../../../components/ui/range-slider/RangeSlider.svelte'
 
 function update(e) {
     let newVal = e.detail.value
+    let v = newVal/100
     if(newVal == 100) {
-        localStorage.removeItem("saturation")
         document.documentElement.style.removeProperty('filter')
     } else {
-        let v = newVal/100
-        localStorage.setItem("saturation", v);
         document.documentElement.style.filter = `saturate(${v})`
     }
-    store.updateSaturation(newVal)
+    $store.settings.accessibility.saturation = v
+    store.saveSettings()
 }
 
-$: saturation = $store.settings?.accessibility?.saturation
+$: saturation = $store.settings?.accessibility?.saturation * 100
 
 </script>
 
 <div class="fl-co">  
     <div class="n-t">
         saturation
+        {saturation}
     </div>
 
 

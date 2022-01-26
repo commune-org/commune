@@ -10,7 +10,7 @@ function toggled() {
 </script>
 
 
-<div class="fl-co">  
+<div class="bbt fl-co pb3">  
     <div class="n-t">
         chat input
     </div>
@@ -41,6 +41,9 @@ function toggled() {
     letter-spacing: 1px;
     color: var(--text);
     margin-bottom: 0.5rem;
+}
+.bbt {
+    border-bottom: 1px solid var(--background-9);
 }
 </style>
 

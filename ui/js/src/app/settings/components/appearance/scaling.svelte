@@ -5,12 +5,8 @@ import RangeSlider from '../../../components/ui/range-slider/RangeSlider.svelte'
 
 function update(e) {
     let newVal = e.detail.value
-    if(newVal == 16) {
-        localStorage.removeItem("font-scaling")
-    } else {
-        localStorage.setItem("font-scaling", newVal);
-    }
-    store.updateFontScaling(newVal)
+    $store.settings.appearance.fontScaling = newVal
+    store.saveSettings()
 }
 
 

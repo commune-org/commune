@@ -5,12 +5,8 @@ import RangeSlider from '../../../components/ui/range-slider/RangeSlider.svelte'
 
 function update(e) {
     let newVal = e.detail.value
-    if(newVal == 16) {
-        localStorage.removeItem("event-spacing")
-    } else {
-        localStorage.setItem("event-spacing", newVal);
-    }
-    store.updateEventSpacing(newVal)
+    $store.settings.appearance.eventSpacing = newVal
+    store.saveSettings()
 }
 
 
