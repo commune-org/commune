@@ -1,5 +1,21 @@
 <script>
+import { store } from '../../../store/store.js'
 import RangeSlider from '../../../components/ui/range-slider/RangeSlider.svelte'
+
+function update(e) {
+    let newVal = e.detail.value
+    if(newVal == 100) {
+        localStorage.removeItem("saturation")
+        document.documentElement.style.removeProperty('filter')
+    } else {
+        let v = newVal/100
+        localStorage.setItem("saturation", v);
+        document.documentElement.style.filter = `saturate(${v})`
+    }
+    store.updateSaturation(newVal)
+}
+
+$: saturation = $store.settings?.accessibility?.saturation
 
 </script>
 
@@ -10,7 +26,7 @@ import RangeSlider from '../../../components/ui/range-slider/RangeSlider.svelte'
 
 
     <div class="co">
-        Reduce the saturation of colors within the application, for those with color sensitivities. This does not affect the saturation of images, videos, role colors or other user-provided content by default.
+        Reduce the saturation of colors throughout the entire application.
     </div>
 
 
@@ -20,9 +36,10 @@ import RangeSlider from '../../../components/ui/range-slider/RangeSlider.svelte'
             max={100}
             range="min"
             step={10}
-            values={[100]} 
+            values={[saturation]} 
             suffix="%"
-            def={16}
+            on:change={update}
+            def={100}
             pips all="label"/>
     </div>
 

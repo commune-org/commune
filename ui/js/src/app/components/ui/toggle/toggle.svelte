@@ -1,4 +1,7 @@
 <script>
+import { createEventDispatcher } from 'svelte'
+
+const dispatch = createEventDispatcher();
 
 export let value = false;
 
@@ -6,6 +9,7 @@ $: bg = value ? `var(--green)` : `var(--background-4)`
 
 function toggle() {
     value = !value
+    dispatch('toggle', value)
 }
 </script>
 

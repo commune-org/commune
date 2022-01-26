@@ -3,10 +3,10 @@ import { store } from '../../../store/store'
 
 import { logo as user } from '../../../switcher/home/logo'
 
-$: compact = $store.settings.displayMode === "compact"
+$: compact = $store.settings?.appearance?.displayMode === "compact"
 
-$: scaling = $store.settings?.fontScaling
-$: spacing = $store.settings?.eventSpacing
+$: scaling = $store.settings?.appearance?.fontScaling
+$: spacing = $store.settings?.appearance?.eventSpacing
 
 let events = [
     {

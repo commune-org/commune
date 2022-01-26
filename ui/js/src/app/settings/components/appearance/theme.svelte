@@ -3,9 +3,10 @@ import { store } from '../../../store/store.js'
 import Select from '../../../components/ui/select/select.svelte'
 
 
-$: theme = $store.settings?.theme
+$: theme = $store.settings?.appearance?.theme
 
 $: isLight = theme && theme == "light"
+$: isBlack = theme && theme == "black"
 $: isSync = theme && theme == "sync"
 
 $: modes = [
@@ -20,6 +21,11 @@ $: modes = [
             selected: isLight,
         },
         {
+            name: "black",
+            caption: "Black",
+            selected: isBlack,
+        },
+        {
             name: "sync",
             caption: "Sync with computer",
             selected: isSync,
@@ -30,16 +36,23 @@ function selected(e) {
     modes = e.detail
 
     let selected = modes.filter(x => x.selected)[0]
-    console.log(selected)
     switch (selected.name) {
         case "light":
             localStorage.setItem("theme", "light")
             document.documentElement.classList.add('light')
+            document.documentElement.classList.remove('black')
             store.updateTheme("light")
+        break;
+        case "black":
+            localStorage.setItem("theme", "black")
+            document.documentElement.classList.add('black')
+            document.documentElement.classList.remove('light')
+            store.updateTheme("black")
         break;
         case "dark":
             localStorage.removeItem("theme")
             document.documentElement.classList.remove('light')
+            document.documentElement.classList.remove('black')
             store.updateTheme("dark")
         break;
         case "sync":

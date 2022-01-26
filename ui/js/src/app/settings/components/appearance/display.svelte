@@ -4,7 +4,7 @@ import Select from '../../../components/ui/select/select.svelte'
 import {onMount} from 'svelte'
 
 
-$: md = $store.settings.displayMode
+$: md = $store.settings?.appearance?.displayMode
 
 $: isCozy = md && md == "cozy"
 $: isCompact = md && md == "compact"

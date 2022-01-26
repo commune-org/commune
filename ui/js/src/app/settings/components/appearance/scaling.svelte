@@ -14,7 +14,7 @@ function update(e) {
 }
 
 
-$: scaling = $store.settings?.fontScaling
+$: scaling = $store.settings?.appearance?.fontScaling
 
 </script>
 

@@ -14,7 +14,7 @@ function update(e) {
 }
 
 
-$: spacing = $store.settings?.eventSpacing
+$: spacing = $store.settings?.appearance?.eventSpacing
 
 
 </script>

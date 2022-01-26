@@ -634,9 +634,9 @@ function mentionUser() {
     })
 }
 
-$: fontScaling = $store.settings?.fontScaling
-$: eventSpacing = $store.settings?.eventSpacing
-$: isCompact = $store.settings?.displayMode === "compact"
+$: fontScaling = $store.settings?.appearance?.fontScaling
+$: eventSpacing = $store.settings?.appearance?.eventSpacing
+$: isCompact = $store.settings?.appearance?.displayMode === "compact"
 
 
 </script>

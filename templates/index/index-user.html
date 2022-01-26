@@ -12,16 +12,27 @@
   <body>
 <script nonce={{.Nonce}}>
     let theme = localStorage.getItem('theme')
-    if(theme && theme == "light") {
-        document.documentElement.classList.add('light')
-    }
-    if(theme && theme == "sync") {
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            document.documentElement.classList.remove('light')
-        } else { 
-            document.documentElement.classList.add('light')
+    if(theme) {
+        switch (theme) {
+            case "light":
+                document.documentElement.classList.add('light')
+            break;
+            case "black":
+                document.documentElement.classList.add('black')
+            break;
+            case "sync":
+                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    document.documentElement.classList.remove('light')
+                } else { 
+                    document.documentElement.classList.add('light')
+                }
         }
     }
+    let saturation = localStorage.getItem('saturation')
+    if(saturation && saturation < 100) {
+        document.documentElement.style.filter = `saturate(${saturation/100})`
+    }
+
 </script>
     <div class="root app">
 

@@ -22,6 +22,12 @@ function createApp() {
     language = "en_US"
   }
 
+  let saturation = localStorage.getItem("saturation");
+  if(!saturation) {
+    saturation = 100
+  }
+
+
   let app = {
     loadingMessage: 'Calibrating',
     active: false,
@@ -32,10 +38,15 @@ function createApp() {
       switcher: {
         mode: 'normal',
       },
-      theme: theme === "light" ? "light" : theme === "sync" ? "sync" : "dark",
-      displayMode: displayMode === "compact" ? "compact" : "cozy",
-      fontScaling: fontScaling,
-      eventSpacing: eventSpacing,
+      appearance: {
+        theme: theme === "light" ? "light" : theme === "sync" ? "sync" : "dark",
+        displayMode: displayMode === "compact" ? "compact" : "cozy",
+        fontScaling: fontScaling,
+        eventSpacing: eventSpacing,
+      },
+      accessibility: {
+        saturation: saturation,
+      },
       language: language,
     },
     events: [],
@@ -2252,27 +2263,27 @@ let eventFromHomeServer = (room_id) => {
 
   let updateTheme = (theme) => {
     update(p => {
-      p.settings.theme = theme
+      p.settings.appearance.theme = theme
       return p
     })
   }
 
   let updateDisplayMode = (mode) => {
     update(p => {
-      p.settings.displayMode = mode
+      p.settings.appearance.displayMode = mode
       return p
     })
   }
   let updateFontScaling = (scaling) => {
     update(p => {
-      p.settings.fontScaling = scaling
+      p.settings.appearance.fontScaling = scaling
       return p
     })
   }
 
   let updateEventSpacing = (spacing) => {
     update(p => {
-      p.settings.eventSpacing = spacing
+      p.settings.appearance.eventSpacing = spacing
       return p
     })
   }
@@ -2282,6 +2293,14 @@ let eventFromHomeServer = (room_id) => {
       p.settings.language = lang
       p.locale = data
 
+      return p
+    })
+  }
+
+
+  let updateSaturation = (val) => {
+    update(p => {
+      p.settings.accessibility.saturation = val
       return p
     })
   }
@@ -2343,6 +2362,7 @@ let eventFromHomeServer = (room_id) => {
     updateFontScaling,
     updateEventSpacing,
     updateLanguage,
+    updateSaturation,
   };
 }
 

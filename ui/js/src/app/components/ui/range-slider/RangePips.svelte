@@ -98,7 +98,7 @@
     position: absolute;
     top: -0.5em;
     width: 0.8em;
-    margin-left: -7px;
+    margin-left: -8px;
     border-radius: 50%;
     white-space: nowrap;
   }
@@ -182,6 +182,7 @@
   {#if ( all && first !== false ) || first }
     <span
       class="pip first"
+      class:def={def == min}
       class:selected={isSelected(min)}
       class:in-range={inRange(min)}
       style="{orientationStart}: 0%;"
@@ -221,6 +222,7 @@
   {#if ( all && last !== false ) || last}
     <span
       class="pip last"
+      class:def={def == max}
       class:selected={isSelected(max)}
       class:in-range={inRange(max)}
       style="{orientationStart}: 100%;"
