@@ -48,6 +48,7 @@ type User struct {
 	UserStatus        interface{}              `json:"user_status"`
 	TimelineState     interface{}              `json:"timeline_state"`
 	Spaces            interface{}              `json:"spaces"`
+	Profile           interface{}              `json:"profile"`
 }
 
 func NewSession(sec string) *sessions.CookieStore {

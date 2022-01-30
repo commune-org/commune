@@ -4,6 +4,8 @@ import { closeBig } from '../utils/icons.js'
 import Nav from './nav/nav.svelte'
 
 import Account from './components/account/account.svelte'
+import Profile from './components/profile/profile.svelte'
+import Privacy from './components/privacy/privacy.svelte'
 import Appearance from './components/appearance/appearance.svelte'
 import Accessibility from './components/accessibility/accessibility.svelte'
 import Language from './components/language/language.svelte'
@@ -43,8 +45,8 @@ function toggle() {
     }
 }
 
-let currentView = 'accessibility'
-let currentComponent = Accessibility
+let currentView = 'account'
+let currentComponent = Account
 
 
 function navigate(e) {
@@ -70,12 +72,12 @@ let items = [
             {
                 title: "User Profile",
                 path: "profile",
-                component: Account,
+                component: Profile,
             },
             {
                 title: "Privacy & Safety",
                 path: "privacy",
-                component: Account,
+                component: Privacy,
             },
         ]
     },
@@ -96,11 +98,6 @@ let items = [
                 title: "Language",
                 path: "language",
                 component: Language,
-            },
-            {
-                title: "Notifications",
-                path: "notifications",
-                component: Account,
             },
         ]
     },

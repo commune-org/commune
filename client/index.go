@@ -138,6 +138,7 @@ func (c *Client) IndexUser(w http.ResponseWriter, r *http.Request) {
 		us.Notifications = acc.Notifications
 		us.UserStatus = acc.UserStatus
 		us.AccountData = acc.AccountData
+		us.Profile = acc.Profile
 
 		t.LoggedInUser = &us
 	}
@@ -165,6 +166,7 @@ type ConstructAccountResponse struct {
 	UserStatus    interface{}
 	Spaces        interface{}
 	TimelineState interface{}
+	Profile       interface{}
 	User          User
 }
 
@@ -349,6 +351,57 @@ func (c *Client) ConstructAccount(user *User) (ConstructAccountResponse, error) 
 			user.AvatarURL = *profile.AvatarURL
 		}
 	}
+
+	username := GetLocalPart(user.UserID)
+
+	ds := fmt.Sprintf(`#@%s:%s`, username, c.Config.Matrix.FederationServer)
+
+	ra, err := matrix.ResolveAlias(ds)
+	if err != nil {
+		log.Println(err)
+		log.Println("profile room missing?")
+	}
+
+	prs, err := matrix.RoomState(ra.RoomID.String())
+	if err != nil {
+		log.Println(err)
+		log.Println("profile room missing?")
+	}
+
+	if err != nil {
+		log.Println(err)
+	}
+
+	type Profile struct {
+		Banner string `json:"banner"`
+		About  string `json:"about"`
+		Color  string `json:"color"`
+	}
+
+	pr := Profile{}
+
+	if prs != nil && len(prs) > 0 {
+		for _, event := range prs {
+
+			if event.Type == "commune.profile.banner" {
+				if b, ok := event.Content["url"].(string); ok {
+					pr.Banner = b
+				}
+			}
+			if event.Type == "commune.profile.about" {
+				if b, ok := event.Content["about"].(string); ok {
+					pr.About = b
+				}
+			}
+			if event.Type == "commune.profile.color" {
+				if b, ok := event.Content["color"].(string); ok {
+					pr.Color = b
+				}
+			}
+		}
+	}
+
+	resp.Profile = pr
 
 	data, err := matrix.GetAccountData(user.UserID, "m.direct")
 	if err != nil {
