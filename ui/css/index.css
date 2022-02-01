@@ -142,11 +142,15 @@ html {
 }
 
 @font-face {
-    font-family: 'Whitney Medium';
-    font-style: normal;
-    font-weight: normal;
-    src: local('Whitney Medium'), url('/static/fonts/whitneymedium.woff') format('woff');
-    }
+    font-family: Whitney;
+    font-weight: 400;
+    src: url('/static/fonts/wh400.woff') format('woff');
+}
+@font-face {
+    font-family: Whitney;
+    font-weight: 500;
+    src: url('/static/fonts/wh500.woff') format('woff');
+}
 
 @font-face {
     font-family: 'Twemoji';
@@ -160,7 +164,7 @@ html {
 body {
     overflow: hidden;
     background: var(--background-1);
-    font-family: "Whitney Medium", Twemoji, sans-serif;
+    font-family: Whitney, Twemoji, sans-serif;
     font-weight: normal;
     font-size: 100%;
     color: var(--text-normal);

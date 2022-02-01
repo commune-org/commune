@@ -769,9 +769,9 @@ $: isCompact = $store.settings?.appearance?.displayMode === "compact"
                             data-username={username}
                             data-userid={event?.sender}
                             on:click={mentionUser}>
-                            <strong>{name}</strong>
+                            {name}
                         </div>
-                        <div class="gr-center ml2 when">
+                        <div class=" ml2 when">
                             {#if !splitView}
                                 {when} {time}
                             {:else}
@@ -1222,6 +1222,8 @@ $: isCompact = $store.settings?.appearance?.displayMode === "compact"
 .username {
     color: var(--white);
     cursor: pointer;
+    font-weight: 500;
+    line-height: 1rem;
 }
 
 
@@ -1269,15 +1271,20 @@ $: isCompact = $store.settings?.appearance?.displayMode === "compact"
     margin-top: 4px;
 }
 .when {
-    margin-top: 4px;
     font-size: 0.8em;
     color: var(--text-muted);
+    font-weight: 500;
+    line-height: 1rem;
 }
 .wh-s {
     font-size: 0.7em;
     color: var(--text-muted);
+    font-weight: 500;
+    line-height: 1rem;
 }
 .when-sm {
+    line-height: 1rem;
+    font-weight: 500;
     font-size: 0.7em;
     color: var(--text-muted);
     position: absolute;

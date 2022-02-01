@@ -140,6 +140,7 @@ $: icon = chatroom ? hash : topics
 <style>
 .room-item {
     padding: 0 0.5rem;
+    font-weight: 500;
 }
 :root {
     --ri-ni: #40444b;

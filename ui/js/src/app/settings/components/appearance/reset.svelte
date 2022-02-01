@@ -5,17 +5,12 @@ function reset() {
     store.updateEventSpacing(16)
     store.updateDisplayMode("cozy")
     store.updateTheme("dark")
-
-    localStorage.removeItem("theme")
     document.documentElement.classList.remove('light')
-
-    localStorage.removeItem("font-scaling")
-    localStorage.removeItem("event-spacing")
-    localStorage.removeItem("message-display")
+    store.saveSettings()
 }
 </script>
 
-<div class="">
+<div class="mb4">
     <button on:click={reset}>Reset to Default</button>
 </div>
 

@@ -24,12 +24,14 @@ function go() {
     cursor: pointer;
     border-radius: 4px;
     margin-bottom: 2px;
+    font-weight: 500;
 }
 .nav-item:hover {
     background-color: var(--background-8);
 }
 .active {
     background-color: var(--background-11);
+    color: var(--white);
 }
 .active:hover {
     background-color: var(--background-11);

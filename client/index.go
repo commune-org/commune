@@ -373,14 +373,18 @@ func (c *Client) ConstructAccount(user *User) (ConstructAccountResponse, error) 
 	}
 
 	type Profile struct {
+		RoomID string `json:"room_id"`
 		Banner string `json:"banner"`
 		About  string `json:"about"`
 		Color  string `json:"color"`
 	}
 
-	pr := Profile{}
+	pr := Profile{
+		RoomID: ra.RoomID.String(),
+	}
 
 	if prs != nil && len(prs) > 0 {
+
 		for _, event := range prs {
 
 			if event.Type == "commune.profile.banner" {
