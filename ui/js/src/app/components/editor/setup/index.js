@@ -109,11 +109,11 @@ let getMentionSuggestionsHTML = (items, text) => {
     }
 
 
-    let e = `<div class="suggestion-item flex pv1 ph3"><div class="gr-center">${pi}</div><div class="gr-center ml3">${name}</div></div>`
+    let e = `<div class="suggestion-item flex pv1 ph3"><div class="gr-center">${pi}</div><div class="fw-500 gr-center ml3">${name}</div></div>`
     el = el + e
   })
 
-  let sub = `<div class="smaller flex ph3 pv2"><div class="upcs">users matching</div><div class="wh ml2">@${text}</div></div>`
+  let sub = `<div class="smaller flex ph3 pv2"><div class="slb upcs">members</div></div>`
 
   return `<div class="suggestion-item-container flex flex-column">${sub}<div class="suggestion-item-list">${el}</div></div>`
 }
@@ -122,11 +122,11 @@ let getMentionSuggestionsHTML = (items, text) => {
 let getEmojiSuggestionsHTML = (items, text) => {
   let el = ``
   items.forEach(item => {
-    let e = `<div class="suggestion-item flex pv1 ph3"><div class="gr-center">${item.unicode}</div><div class="gr-center ml3">${item.shortcode}</div></div>`
+    let e = `<div class="suggestion-item flex pv1 ph3"><div class="gr-center">${item.unicode}</div><div class="fw-500 gr-center ml3">${item.shortcode}</div></div>`
     el = el + e
   })
 
-  let sub = `<div class="smaller flex ph3 pv2"><div class="upcs">emoji matching</div><div class="wh ml2">:${text}</div></div>`
+  let sub = `<div class="smaller flex ph3 pv2"><div class="slb upcs">emoji matching</div><div class="fw-500 wh ml2">:${text}</div></div>`
 
   return `<div class="suggestion-item-container flex flex-column">${sub}<div class="suggestion-item-list">${el}</div></div>`
 }

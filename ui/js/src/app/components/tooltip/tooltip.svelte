@@ -64,7 +64,7 @@ function activate(e) {
                 top = top - ((top + 254) - (document.body.clientHeight)) - 20
             }
             left = rect.left + rect.width + 10
-        }, 1000)
+        }, 100)
     }
 }
 
@@ -96,6 +96,7 @@ let killMe = (e) => {
         bind:this={container}
         style={`--top:${top}px;--left:${left}px;`}>
         {#if fetched} 
+            Test
         {:else}
             <div class="spinner gr-center">
             </div>

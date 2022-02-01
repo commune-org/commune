@@ -41,13 +41,17 @@ $: avatar = `${homeServer}/_matrix/media/r0/download/${info?.avatar_url?.substri
 
 <style>
 .member-item {
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+    padding-top: 0.35rem;
+    padding-bottom: 0.35rem;
     cursor: pointer;
     border-radius: 4px;
+    font-weight: 500;
+    color: var(--text-alt);
 }
+
 .member-item:hover {
     background-color: var(--background-6);
+    color: var(--white);
 }
 
 .profile-avatar {

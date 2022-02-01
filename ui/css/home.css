@@ -4,16 +4,22 @@
 }
 
 @font-face {
-    font-family: 'Whitney Medium';
-    font-style: normal;
-    font-weight: normal;
-    src: local('Whitney Medium'), url('/static/fonts/whitneymedium.woff') format('woff');
-    }
+    font-family: Whitney;
+    font-weight: 400;
+    src: url('/static/fonts/wh400.woff') format('woff');
+}
+
+@font-face {
+    font-family: Whitney;
+    font-weight: 500;
+    src: url('/static/fonts/wh500.woff') format('woff');
+}
+
 
 body {
     background: white;
-    font-family: "Whitney Medium", sans-serif;
-    font-weight: normal;
+    font-family: "Whitney", sans-serif;
+    font-weight: 500;
     font-size: 100%;
     color: var(--text);
     margin: 0;
@@ -116,10 +122,12 @@ input {
     padding: 0.75rem;
     width: 100%;
     color: black;
+    font-weight: 500;
+    transition: 0.1s;
 }
 
 input:focus {
-    border: 1px solid black;
+    border: 1px solid #222222;
 }
 
 .mx-w {

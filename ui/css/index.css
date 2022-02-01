@@ -1892,6 +1892,7 @@ pre::-webkit-scrollbar-thumb {
 
 .suggestion-item-active {
     background-color: var(--background-8);
+    color: var(--white);
 }
 
 .s-ri svg {
@@ -1900,6 +1901,15 @@ pre::-webkit-scrollbar-thumb {
 
 .upcs {
     text-transform: uppercase;
+}
+
+.fw-500 {
+    font-weight: 500;
+}
+
+.slb {
+    font-weight: 600;
+    font-family: Ginto;
 }
 
 .wh {
@@ -1911,6 +1921,7 @@ pre::-webkit-scrollbar-thumb {
     border-radius: 3px;
     padding: 0 0.125rem;
     cursor: pointer;
+    font-weight: 500;
 }
 
 .mention:hover {
