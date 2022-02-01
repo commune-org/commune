@@ -119,10 +119,10 @@ let tip = () => {
 }
 
 .lb {
+    font-family: Ginto;
     text-transform: uppercase;
     font-size: 0.72rem;
-    letter-spacing: 1px;
-    font-weight: bold;
+    font-weight: 600;
     color: var(--text-light);
     padding: 0.5rem 0.5rem 0.5rem 0.125rem;
     transition: 0.1s;

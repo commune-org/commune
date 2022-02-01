@@ -797,7 +797,7 @@ function selectTone(tone) {
                                 <div class="tin-c gr-center">
                                     {@html em0}
                                 </div>
-                                <div class="ml1 gr-center">
+                                <div class="tt ml1 gr-center">
                                     frequently used
                                 </div>
                             </div>
@@ -824,7 +824,7 @@ function selectTone(tone) {
                                 <div class="tin-c gr-center">
                                     {@html set.icon}
                                 </div>
-                                <div class="ml1 gr-center">
+                                <div class="tt ml1 gr-center">
                                     {title}
                                 </div>
                             </div>
@@ -979,16 +979,20 @@ function selectTone(tone) {
 
 .emoji-title {
     text-transform: uppercase;
-    font-size: 0.72rem;
-    letter-spacing: 1px;
-    font-weight: bold;
+    font-size: 12px;
+    font-weight: 600;
     color: var(--text-light);
+    line-height: 1;
     position: sticky;
     position: -webkit-sticky;
     top: 0;
     background-color: var(--background-2);
     padding: 0.5rem 0;
     z-index: 25;
+}
+
+.tt {
+    vertical-align: bottom;
 }
 
 .hov-e {

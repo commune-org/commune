@@ -33,6 +33,11 @@ function navigate(e) {
 </div>
 
 <style>
+@font-face {
+    font-family: Ginto;
+    font-weight: 700;
+    src: url(/static/fonts/gi700.woff) format("woff");
+}
 .sidebar-nav {
     justify-self: right;
     align-self: center;
@@ -43,7 +48,8 @@ function navigate(e) {
 }
 .n-t {
     text-transform: uppercase;
-    font-weight: bold;
+    font-family: Ginto;
+    font-weight: 700;
     font-size: 0.7rem;
     letter-spacing: 1px;
     color: var(--text-muted);

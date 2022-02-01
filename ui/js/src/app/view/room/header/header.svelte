@@ -220,11 +220,13 @@ function goBack() {
 }
 
 .name {
-    font-weight: bold;
+    font-family: Ginto;
+    font-weight: 600;
 }
 
 .name-r {
-    font-weight: bold;
+    font-family: Ginto;
+    font-weight: 600;
 }
 .name-r:hover {
     color: var(--white);

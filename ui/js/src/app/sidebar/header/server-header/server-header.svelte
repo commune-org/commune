@@ -47,12 +47,6 @@ let initMenu = () => {
         <div class="server-menu-item">
             One
         </div>
-        <div class="server-menu-item">
-            Two
-        </div>
-        <div class="server-menu-item">
-            Three
-        </div>
     </div>
 </template>
 
@@ -60,7 +54,7 @@ let initMenu = () => {
     class:menu-active={menuActive}
     bind:this={container}>
     <div class="gr-center w-100 ph3 flex">
-        <div class="clmp-1 bold flex-one">
+        <div class="name clmp-1 flex-one">
             {server?.name}
         </div>
         <div class="">
@@ -97,4 +91,9 @@ let initMenu = () => {
     color: white;
     background-color: var(--secondary);
 }
+.name {
+    font-family: Ginto;
+    font-weight: 600;
+}
+
 </style>

@@ -7,7 +7,7 @@ import Removal from './removal.svelte'
 <div class="account-settings-container fl-co">
 
     <div class="title">
-        <strong>My Account</strong>
+        My Account
     </div>
 
     <div class="mt3">
@@ -17,7 +17,7 @@ import Removal from './removal.svelte'
     <div class="sp mv4"></div>
 
     <div class="title">
-        Password & Authentication
+        Password and Authentication
     </div>
 
     <div class="mt3">
