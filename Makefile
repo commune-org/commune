@@ -46,7 +46,7 @@ stopUnit:
 setup:
 	-go get -d github.com/cortesi/modd/cmd/modd;
 	-go install github.com/pressly/goose/v3/cmd/goose@latest;
-	-cd ..;git clone https://github.com/matrix-org/synapse;cd synapse;cp ../app/docs/alt-start.sh demo/alt-start.sh;python3 -m venv ./env;source ./env/bin/activate;pip install -e ".[all,dev]";
+	-cd ..;git clone https://github.com/matrix-org/synapse;cd synapse;cp ../commune/docs/alt-start.sh demo/alt-start.sh;python3 -m venv ./env;source ./env/bin/activate;pip install -e ".[all,dev]";
 stopDevSynapse: SHELL := /bin/bash
 stopDevSynapse:
 	-cd ..;cd synapse;source env/bin/activate;./demo/stop.sh;
