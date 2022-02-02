@@ -199,6 +199,11 @@ function goBack() {
 </div>
 
 <style>
+@font-face {
+    font-family: Ginto;
+    font-weight: 600;
+    src: url(/static/fonts/gi600.woff) format("woff");
+}
 .chat-header {
     display: grid;
     border-bottom: 1px solid var(--background-1);

@@ -1,10 +1,12 @@
 <script>
+import { store } from '../../../store/store.js'
 import Toggle from '../../../components/ui/toggle/toggle.svelte'
 
-let showButton = false;
+let showButton = $store.settings.accessibility.showMessageButton
 
 function toggled() {
-    console.log(showButton)
+    $store.settings.accessibility.showMessageButton = showButton
+    store.saveSettings()
 }
 
 </script>

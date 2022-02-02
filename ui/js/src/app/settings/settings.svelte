@@ -10,7 +10,7 @@ import Appearance from './components/appearance/appearance.svelte'
 import Accessibility from './components/accessibility/accessibility.svelte'
 import Language from './components/language/language.svelte'
 
-let active = true;
+let active = false;
 
 let kill =() => {
     active = false;

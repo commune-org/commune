@@ -8,6 +8,7 @@ import GIF from './gif/gif.svelte'
 import Stickers from './stickers/stickers.svelte'
 import Recording from './recording/recording.svelte'
 import Media from './media/media.svelte'
+import SendButton from './send-button/send-button.svelte'
 import { makeid } from '../../../../utils/utils.js'
 import { useLocation } from 'svelte-navigator'
 
@@ -43,6 +44,8 @@ function syncContent(e) {
 
 $: lengthExceeded = editorContent?.length > 2000
 $: exceededBy = editorContent?.length - 2000
+
+$: noInput = editorContent?.length == 0
 
 export let replying;
 export let replyEvent;
@@ -335,10 +338,13 @@ $: if(showLengthWarning) {
 
 $:id = `inv-${room.alias}`
 
+$: showMessageButton = $store.settings.accessibility.showMessageButton
+
 </script>
 
 <div id={id} class="input-view" 
     class:recording={isRecording}
+    class:smb={showMessageButton}
     class:no-dis={!indicate && !threadView && !isMessageEvent}>
 
     {#if lengthExceeded}
@@ -405,6 +411,13 @@ $:id = `inv-${room.alias}`
         <GIF on:selected={insertGIF}/>
         <Stickers room={room} on:selected={insertGIF}/>
         <Emoji on:insert={insert}/>
+
+        {#if showMessageButton}
+
+            <SendButton noInput={noInput} on:send={send}/>
+
+        {/if}
+
     {/if}
 
 </div>
@@ -438,6 +451,10 @@ $:id = `inv-${room.alias}`
     display: grid;
     grid-template-columns: auto 1fr auto auto auto auto;
     height: 100%;
+}
+
+.smb {
+    grid-template-columns: auto 1fr auto auto auto auto auto;
 }
 
 .recording {
