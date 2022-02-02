@@ -1,6 +1,7 @@
 <script>
 import Saturation from './saturation.svelte'
 import ChatInput from './chat-input.svelte'
+import LimitWidth from './limit-width.svelte'
 </script>
 
 <div class="accessibility-settings-container fl-co">
@@ -11,6 +12,10 @@ import ChatInput from './chat-input.svelte'
     
     <div class="mt4">
         <Saturation/>
+    </div>
+
+    <div class="mt4">
+        <LimitWidth/>
     </div>
 
     <div class="mt4">

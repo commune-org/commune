@@ -253,7 +253,7 @@ function onPasswordKeyPress(e) {
 
 
     <div class="gr-center flex flex-column flex-one">
-        <div class="username gr-center-start pl2">
+        <div class="usn gr-center-start pl2">
             {username}
         </div>
     </div>
@@ -365,6 +365,15 @@ function onPasswordKeyPress(e) {
 
 
 <style>
+@font-face {
+    font-family: Whitney;
+    font-weight: 600;
+    src: url('/static/fonts/wh600.woff') format('woff');
+}
+
+.usn {
+    font-weight: 600;
+}
 :root {
     --online: #3ba55d;
 }

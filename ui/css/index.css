@@ -209,14 +209,6 @@ a:hover {
     grid-template-rows: 100%;
 }
 
-.foundation {
-    height: 100vh;
-    width: 100vw;
-    display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: 100%;
-}
-
 .alert {
     grid-template-rows: auto 1fr;
 }

@@ -45,8 +45,8 @@ function toggle() {
     }
 }
 
-let currentView = 'account'
-let currentComponent = Account
+let currentView = 'accessibility'
+let currentComponent = Accessibility
 
 
 function navigate(e) {

@@ -21,6 +21,7 @@ function createApp() {
       },
       accessibility: {
         saturation: window.settings?.accessibility?.saturation || 100,
+        limitDisplayWidth: window.settings?.accessibility?.limitDisplayWidth || false,
         showMessageButton: window.settings?.accessibility?.showMessageButton || false,
       },
       language: window.settings?.language || "en_US",

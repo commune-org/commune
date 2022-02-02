@@ -23,6 +23,8 @@ $: mobileViewToggled = $store.mobileViewToggled
 
 $: alertsExist = $store.alerts?.length > 0
 
+$: limitDisplayWidth = $store.settings.accessibility.limitDisplayWidth
+
 </script>
 
 
@@ -35,6 +37,7 @@ $: alertsExist = $store.alerts?.length > 0
     <Alert/>
 
     <div class="container"
+    class:mw-1600={limitDisplayWidth}
     class:isMobile={isMobile && !mobileViewToggled}>
 
         <Switcher />
@@ -66,12 +69,29 @@ $: alertsExist = $store.alerts?.length > 0
 
 
 <style>
+
+.foundation {
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 100%;
+}
+
 .container {
     height: 100vh;
     width: 100vw;
     display: grid;
     grid-template-rows: 100%;
     grid-template-columns: [switcher] auto [sidebar] auto [view] 1fr;
+    justify-self: center;
+    align-self: center;
+    border-right: 1px solid var(--background-3);
+    border-left: 1px solid var(--background-3);
+}
+
+.mw-1600 {
+    max-width: 1600px;
 }
 
 .isMobile {
