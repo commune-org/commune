@@ -210,6 +210,7 @@ func (c *Client) Setup() {
 		req := &gomatrix.ReqCreateRoom{
 			Preset:        "public_chat",
 			Visibility:    "public",
+			RoomVersion:   "9",
 			RoomAliasName: u,
 			CreationContent: map[string]interface{}{
 				"m.federate": true,
@@ -302,6 +303,7 @@ func (c *Client) Setup() {
 			Visibility:    "public",
 			Name:          r.Name,
 			RoomAliasName: v,
+			RoomVersion:   "9",
 			CreationContent: map[string]interface{}{
 				"m.federate": true,
 			},
@@ -441,8 +443,9 @@ func (c *Client) Setup() {
 			}
 
 			req := &gomatrix.ReqCreateRoom{
-				Preset:     "public_chat",
-				Visibility: "public",
+				Preset:      "public_chat",
+				RoomVersion: "9",
+				Visibility:  "public",
 				CreationContent: map[string]interface{}{
 					"m.federate": true,
 				},

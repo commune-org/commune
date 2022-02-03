@@ -149,6 +149,8 @@ for port in 8008 8009; do
         echo "report_stats: false" >> $DIR/etc/$port.config
     fi
 
+    sed -i 's/^.*#default_room_version.*$/default_room_version: "9"/' $DIR/etc/$port.config
+
     sed -i 's/^.*registration_shared_secret.*$/registration_shared_secret: "secret"/' $DIR/etc/$port.config
 
     python3 -m synapse.app.homeserver \
