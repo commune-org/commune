@@ -10,6 +10,7 @@ require (
 	github.com/antchfx/htmlquery v1.2.3 // indirect
 	github.com/antchfx/xmlquery v1.3.3 // indirect
 	github.com/antonholmquist/jason v1.0.0 // indirect
+	github.com/cortesi/modd v0.0.0-20211215124449-6083f9d1c171 // indirect
 	github.com/go-chi/chi v1.5.1
 	github.com/go-chi/cors v1.1.1
 	github.com/go-chi/hostrouter v0.0.0-20201102173854-85defb39fbf4
