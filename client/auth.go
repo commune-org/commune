@@ -1548,6 +1548,7 @@ func (c *Client) CompleteSignupTemp() http.HandlerFunc {
 
 			creq := &gomatrix.ReqCreateRoom{
 				RoomAliasName: fmt.Sprintf(`@%s`, username),
+				RoomVersion:   "9",
 				Preset:        "public_chat",
 				Visibility:    "public",
 				CreationContent: map[string]interface{}{

@@ -53,6 +53,7 @@ type ReqCreateRoom struct {
 	Preset                    string                 `json:"preset,omitempty"`
 	IsDirect                  bool                   `json:"is_direct,omitempty"`
 	PowerLevelContentOverride map[string]interface{} `json:"power_level_content_override,omitempty"`
+	RoomVersion               string                 `json:"room_version"`
 }
 
 type PowerLevelContentOverride struct {

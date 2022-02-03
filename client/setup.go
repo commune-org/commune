@@ -75,6 +75,7 @@ func (c *Client) Setup() {
 		Preset:        "public_chat",
 		Visibility:    "public",
 		RoomAliasName: "commune",
+		RoomVersion:   "9",
 		Name:          "Commune",
 		Topic:         "Commune space.",
 		CreationContent: map[string]interface{}{
