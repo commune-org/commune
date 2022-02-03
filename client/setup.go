@@ -316,10 +316,31 @@ func (c *Client) Setup() {
 
 		log.Println("CREATE ROOOOOOOOOM")
 
+		rid1, err := createStream(createStreamsRequest{
+			RoomType: "chat",
+			ParentID: ccr.RoomID,
+		})
+		if err != nil {
+			log.Println(err)
+			return createChannelResponse{}, nil
+		}
+		rid2, err := createStream(createStreamsRequest{
+			RoomType: "topics",
+			ParentID: ccr.RoomID,
+		})
+		if err != nil {
+			log.Println(err)
+			return createChannelResponse{}, nil
+		}
+
 		go func() {
 			ncontent["room_id"] = ccr.RoomID
 			ncontent["name"] = r.Name
 			ncontent["default_stream"] = r.DefaultStream
+			ncontent["streams"] = map[string]string{
+				"chat":   rid1,
+				"topics": rid2,
+			}
 			_, err := matrix.SendStateEvent(crr.RoomID, "m.space.child", ccr.RoomID, ncontent)
 			if err != nil {
 				log.Println(err)
@@ -327,6 +348,10 @@ func (c *Client) Setup() {
 		}()
 		return createChannelResponse{
 			RoomID: ccr.RoomID,
+			Streams: streams{
+				Chat:   rid1,
+				Topics: rid2,
+			},
 		}, nil
 	}
 
