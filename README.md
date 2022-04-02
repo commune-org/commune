@@ -29,29 +29,29 @@ Commune is released under the [PolyForm Noncommercial License](https://polyformp
 
 ## Q&A
 
-> What is Commune actually from the end user perspective?
+#### What is Commune actually from the end user perspective?
 
 Commune is a space for two or more people to communicate together, safely and expressively.
 
 It’s basically WhatsApp extended with ‘build your own comms space’ modules. What starts as ephemeral chatter can progressively turn into lasting artifacts of knowledge.
 
->So when I sign up on commune.chat I actually get a @username:commune.chat MxID?
+#### So when I sign up on commune.chat I actually get a @username:commune.chat MxID?
 
 Commune accounts are regular Matrix accounts, so a Commune @username is actually just @username:commune.chat. We intentionally use only the `localpart` of the MxID to make it easier for new users who are not familiar with the Matrix ID format.
 
-> How much is Matrix behind the scenes?
+#### How much is Matrix behind the scenes?
 
 Matrix is Commune's events and federation layer, so in a sense all the important parts of Commune are Matrix. Commune does have a backend layer (in Go) that sits between the frontend Svelte client and Synapse. This backend is necessary for extending Matrix without modifying Synapse itself.
 
-> Are you going to distribute Commune as a frontend, or as a whole package?
+#### Are you going to distribute Commune as a frontend, or as a whole package?
 
 We want to offer Commune as a single package that includes Commune, Synapse, and anything else that might make self-hosting dead simple. The eventual goal is have a one-click installer that shouldn't require advanced tech/server knowledge. Currently, Commune is best suited to those looking to start self-hosting a new matrix homeserver from scratch. Making Commune work on top of existing homeservers is something we'd like to support by the time Commune reaches beta. Commune will still work if pointed at an existing homeserver, but making existing rooms place nicely with Commune's server -> channel -> stream design is going to take additional work.
 
-> How does it compare to leading community platforms like Discord and Discourse?
+#### How does it compare to leading community platforms like Discord and Discourse?
 
 Since the Commune product manager @erlend-sh also works as a product manager at @Discourse, a disclaimer is necessary: These two applications are not in direct competition. They solve similar problems, but in very different ways.
 
-#### Commune is…
+**Commune is…**
 
 - Personal; 1:1 as default starting point.
 - Primarily Decentralised.
@@ -59,7 +59,7 @@ Since the Commune product manager @erlend-sh also works as a product manager at 
 - Ecosystem-driven (Matrix spec).
 - Software-license seller ([PolyForm NonCommercial](https://polyformproject.org/licenses/noncommercial/1.0.0/)).
 
-#### Discord/Discourse is…
+**Discord/Discourse is…**
 
 - Impersonal; many-to-many as default starting point.
 - Primarily Centralised.
@@ -67,19 +67,19 @@ Since the Commune product manager @erlend-sh also works as a product manager at 
 - Customer-driven
 - Software-hosting seller.
 
-> How long has it been in development?
+#### How long has it been in development?
 
 We’ve been quietly working on the Commune app since mid-2021 and discussed product plans ever since Hummingbard (the prototypical predecessor of Commune) [was publicly announced](https://news.ycombinator.com/item?id=26277602).
 
-> Are you going to distribute Commune as a frontend, or as a whole package?
+#### Are you going to distribute Commune as a frontend, or as a whole package?
 
 Whole package. While we expect most users will want to use Commune merely as a window into their favorite people and communities, it’s important that deploying your own server is an equally accessible option for users of this software. Come for the client convenience, stay for the server sovereignty.
 
-> Who are you?
+#### Who are you?
 
 We are a team of two. [ahq](https://github.com/ChurchOfTheSubgenius) is developing it full-time. [Erlend](https://github.com/erlend-sh) is directing the product development of the app part-time, whilst also paying ahq a living wage, effectively as a seed investor.
 
-> What are the implications of the PolyForm NonCommercial license?
+#### What are the implications of the PolyForm NonCommercial license?
 
 The two key restrictions are:
 
@@ -93,7 +93,7 @@ Any general-purpose libraries we come up with will for sure be shared as MIT-sty
 More about PolyForm in this podcast episode:
 https://player.captivate.fm/episode/75724001-14e8-48ef-8fc4-c2b1a6b04001
 
-> Why did you choose the PolyForm NonCommercial license?
+#### Why did you choose the PolyForm NonCommercial license?
 
 We want the software project to be self-sustainable. The best way to do that is to [charge for it somehow](https://meta.discourse.org/t/which-is-better-discourse-or-flarum/71726/7?u=erlend_sh).
 
