@@ -116,7 +116,7 @@ onMount(() => {
 
 
     let opts = {
-        room_id: room.streams?.[roomType],
+        room_id: roomID,
         roomType: roomType,
     }
     if(roomType == 'dm') {
@@ -130,9 +130,11 @@ onMount(() => {
     }
 
     store.fetchRoomEvents(opts).then(res => {
+        console.log("test")
         console.log(res)
+        console.log("test")
         let props = {
-            room_id: room.streams?.[roomType],
+            room_id: roomID,
             events: res.chunk,
             start: res.start,
             end: res.end,
@@ -160,13 +162,14 @@ onMount(() => {
             }
 
             let popts = {
-                room_id: room.streams[altRoomType],
+                room_id: roomID,
                 roomType: altRoomType,
             }
+            /*
             store.fetchRoomEvents(popts).then(res => {
                 console.log(res)
                 let props = {
-                    room_id: room.streams[altRoomType],
+                    room_id: roomID,
                     events: res.chunk,
                     start: res.start,
                     end: res.end,
@@ -175,6 +178,7 @@ onMount(() => {
                 }
                 store.updateEvents(props)
             })
+            */
         }
     }).then(() => {
         if(thread) {

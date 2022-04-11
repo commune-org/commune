@@ -140,6 +140,9 @@ function createApp() {
           server.owner = true
         }
       }
+      if(event.type == 'commune.stream') {
+          server.default_stream = event?.content?.default_stream
+      }
       if(event.type == 'm.space.child') {
         /*
         let roomID = event.state_key
@@ -161,10 +164,11 @@ function createApp() {
           })
         */
 
+
           let room = {
-            //room_id: event.state_key,
+            room_id: event.state_key,
             channel_id: event.state_key,
-            room_id: event?.content?.streams?.[event?.content?.default_stream],
+            //room_id: event?.content?.streams?.[event?.content?.default_stream],
             alias: event.content.local_part,
             pathname: `/${event.content.local_part}`,
             name: event.content.name,
@@ -199,14 +203,33 @@ function createApp() {
 
 
         server.rooms.push(room)
+
       }
-      if(server.rooms.length > 0) {
-        server.rooms?.sort((a, b) => (a.pathname > b.pathname) ? 1 : -1)
-        let def = server.rooms.filter(child => child.name == 'general')[0]?.pathname
-        server.default_room = server.pathname + def
-        server.active_room = server.pathname + def
-      }
+
+
+
     })
+
+    // add dummy #general channel
+    server.rooms.push({
+        room_id: serverID,
+        channel_id: serverID,
+        alias: "general",
+        pathname: "/general",
+        name: "general",
+        server_id: serverID,
+        sender: server.sender,
+        room_type: server.default_stream,
+    })
+
+
+    if(server.rooms.length > 0) {
+      server.rooms?.sort((a, b) => (a.name > b.name) ? 1 : -1)
+      let def = server.rooms.filter(child => child.name == 'general')[0]?.pathname
+      server.default_room = server.pathname + def
+      server.active_room = server.pathname + def
+    }
+
     return server
   }
 
@@ -1438,6 +1461,11 @@ async function fetchRoomEvents(opts) {
   if(start) {
     endpoint = `${homeServer}/_matrix/client/r0/rooms/${roomID}/messages?limit=${limit}&dir=b&from=${start}&filter=${filter}`
   }
+
+    let endpoint = `${homeServer}/_matrix/client/r0/rooms/${roomID}/messages?limit=${limit}&dir=${dir}`
+  if(start) {
+    endpoint = `${homeServer}/_matrix/client/r0/rooms/${roomID}/messages?limit=${limit}&dir=${dir}&from=${start}`
+  }
   */
 
   let dir = `b`
@@ -1445,11 +1473,11 @@ async function fetchRoomEvents(opts) {
   if(optDir == `f`) {
     dir = `f`
   }
-
-    let endpoint = `${homeServer}/_matrix/client/r0/rooms/${roomID}/messages?limit=${limit}&dir=${dir}`
+    let endpoint = `${homeServer}/_matrix/client/r0/rooms/${roomID}/messages?limit=${limit}&dir=b&filter=${filter}`
   if(start) {
-    endpoint = `${homeServer}/_matrix/client/r0/rooms/${roomID}/messages?limit=${limit}&dir=${dir}&from=${start}`
+    endpoint = `${homeServer}/_matrix/client/r0/rooms/${roomID}/messages?limit=${limit}&dir=b&from=${start}&filter=${filter}`
   }
+
     let account = app?.accounts?.filter(account => account.user_id == app.active_account)[0]
 
     let resp = await fetch(endpoint, {
@@ -2135,12 +2163,12 @@ function strip(id) {
       }
 
       room.room_type = switchTo
-      room.room_id = room.streams[switchTo]
+      //room.room_id = room.streams[switchTo]
 
       let rm = p.allRooms.filter(x => x.channel_id == room_id)[0]
       if(rm) {
         rm.room_type = switchTo
-        room.room_id = room.streams[switchTo]
+        //room.room_id = room.streams[switchTo]
       }
 
       let stored = localStorage.getItem('streams')
