@@ -278,12 +278,7 @@ func (c *Client) Scrape(link string, domain string) LinkMetaData {
 	extensions.RandomUserAgent(co)
 	extensions.Referer(co)
 
-	htmldata := ""
 	lmd := LinkMetaData{}
-
-	co.OnResponse(func(r *colly.Response) {
-		htmldata = string(r.Body)
-	})
 
 	isSoundCloud := domain == "soundcloud.com" || domain == "www.soundcloud.com"
 

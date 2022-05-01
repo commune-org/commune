@@ -1281,10 +1281,10 @@ func (c *Client) CompleteSignupTemp() http.HandlerFunc {
 		}
 
 		s, err := GetSession(r, c)
-		if err != nil {
-			log.Println(err)
-			c.Error(w, r)
-			return
+		if s == nil || err != nil {
+			sess := NewSession(c.Config.Client.SecureCookie)
+			sess.Options.Domain = fmt.Sprintf(`.%s`, c.Config.Client.Domain)
+			s, _ = sess.Get(r, c.Config.Client.CookieName)
 		}
 
 		serverName := c.URLScheme(c.Config.Matrix.Server) + fmt.Sprintf(`:%d`, c.Config.Matrix.Port)
